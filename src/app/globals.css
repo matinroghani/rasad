@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@import 'tailwind-scrollbar-hide/v4';
+@import "tw-fade";
+@import "../style/variables.css";
+
+@theme inline {
+  --font-sans: var(--font-yekan);
+}
+
+body {
+  background-color: var(--bg-main);
+  font-family: var(--font-yekan) !important;
+}

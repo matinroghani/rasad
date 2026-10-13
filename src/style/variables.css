@@ -1,0 +1,249 @@
+:root {
+  /* ================================
+     Background
+     ================================ */
+
+  --bg-main: #f6f8f4;
+  --bg-secondary: #eef2ea;
+
+  --surface: #ffffff;
+  --surface-warm: #fafbf8;
+  --surface-dark: #2a3a2c;
+
+  /* ================================
+     Panels & Borders
+     ================================ */
+
+  --panel-bg: #ffffff;
+  --panel-border: #dde5d8;
+  --panel-border-hover: #c5d4bd;
+
+  --border: #dde5d8;
+  --border-hover: #c5d4bd;
+
+  /* ================================
+     Primary Green
+     ================================ */
+
+  --accent-green: #4a7a4e;
+  --accent-green-hover: #3b633e;
+  --accent-green-light: #7aa87c;
+  --accent-green-neon: #6fbf73;
+  --accent-green-glow: #a3d9a5;
+
+  --green-soft: #f0f7ec;
+  --green-soft-hover: #e5f0de;
+
+  /* ================================
+     Blue
+     ================================ */
+
+  --accent-blue: #4a7d94;
+  --accent-blue-hover: #3b657a;
+  --accent-blue-neon: #6ab0cc;
+
+  --blue-soft: #eef5f8;
+
+  /* ================================
+     Orange
+     ================================ */
+
+  --accent-orange: #b88a3e;
+  --accent-orange-neon: #d9a755;
+
+  --orange-soft: #fdf7ec;
+
+  /* ================================
+     Red
+     ================================ */
+
+  --accent-red: #b85450;
+  --accent-red-hover: #9a4340;
+  --accent-red-neon: #d47976;
+
+  --red-soft: #fcf0ef;
+
+  /* ================================
+     Teal
+     ================================ */
+
+  --accent-teal: #4d8a83;
+  --accent-teal-neon: #6eb5ad;
+
+  --teal-soft: #ecf5f4;
+
+  /* ================================
+     Purple
+     ================================ */
+
+  --accent-purple: #7a6ba8;
+  --accent-purple-neon: #a394c9;
+
+  --purple-soft: #f4f2f9;
+
+  /* ================================
+     Sky
+     ================================ */
+
+  --accent-sky: #4a8fa8;
+  --accent-sky-neon: #7fc4dd;
+
+  --sky-soft: #eef7fb;
+
+  /* ================================
+     Text
+     ================================ */
+
+  --text-main: #2f3a30;
+  --text-muted: #6b7a6c;
+  --text-light: #96a596;
+
+  --text-inverse: #ffffff;
+
+  /* ================================
+     Status
+     ================================ */
+
+  --success: var(--accent-green-neon);
+  --success-soft: var(--green-soft);
+
+  --info: var(--accent-blue-neon);
+  --info-soft: var(--blue-soft);
+
+  --warning: var(--accent-orange-neon);
+  --warning-soft: var(--orange-soft);
+
+  --danger: var(--accent-red);
+  --danger-soft: var(--red-soft);
+
+  /* ================================
+     Shadows
+     ================================ */
+
+  --shadow-sm: 0 1px 3px rgba(60, 80, 60, 0.04);
+  --shadow-md: 0 4px 12px rgba(60, 80, 60, 0.06);
+  --shadow-lg: 0 10px 28px rgba(60, 80, 60, 0.08);
+  --shadow-xl: 0 20px 44px rgba(60, 80, 60, 0.1);
+
+  --shadow-glow: 0 0 24px rgba(111, 191, 115, 0.18);
+
+  --shadow-danger: 0 0 0 4px rgba(184, 84, 80, 0.2);
+
+  /* ================================
+     Radius
+     ================================ */
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  /* ================================
+     Layout
+     ================================ */
+
+  --header-height: 76px;
+  --sidebar-width: 250px;
+
+  --container-max-width: 1600px;
+
+  --page-padding-x: 24px;
+  --page-padding-y: 24px;
+
+  --content-gap: 20px;
+  --section-gap: 24px;
+
+  /* ================================
+     Typography
+     ================================ */
+
+  --font-family:
+    var(--font-yekan),
+    Vazirmatn,
+    Tahoma,
+    sans-serif;
+
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-md: 13px;
+  --font-size-lg: 14px;
+  --font-size-xl: 16px;
+
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+
+  --line-height-tight: 1.4;
+  --line-height-normal: 1.65;
+  --line-height-relaxed: 1.9;
+
+  /* ================================
+     Motion
+     ================================ */
+
+  --transition:
+    all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --transition-fast:
+    all 0.2s ease;
+
+  --transition-slow:
+    all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --ease-out:
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+  --ease-spring:
+    cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ================================
+     Effects
+     ================================ */
+
+  --duplicate-glow:
+    0 0 0 4px rgba(184, 84, 80, 0.2);
+
+  --focus-ring:
+    0 0 0 3px rgba(111, 191, 115, 0.2);
+}
+
+
+/* ==================================
+   Dark Mode
+   ================================== */
+
+.dark {
+  --bg-main: #1a241c;
+  --bg-secondary: #202e22;
+
+  --surface: #243228;
+  --surface-warm: #27352a;
+  --surface-dark: #2a3a2c;
+
+  --panel-bg: #243228;
+  --panel-border: #344838;
+  --panel-border-hover: #4a5f4e;
+
+  --border: #344838;
+  --border-hover: #4a5f4e;
+
+  --text-main: #e0e8e0;
+  --text-muted: #a8b5a9;
+  --text-light: #7f9181;
+
+  --green-soft: #263b29;
+  --blue-soft: #26363d;
+  --orange-soft: #3b3324;
+  --red-soft: #3b2928;
+  --teal-soft: #293b39;
+  --purple-soft: #332f3d;
+  --sky-soft: #29383d;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.22);
+  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.28);
+  --shadow-xl: 0 20px 44px rgba(0, 0, 0, 0.34);
+
+  --shadow-glow:
+    0 0 24px rgba(111, 191, 115, 0.12);
+}
