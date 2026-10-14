@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SidebarContent from "./components/sidebar/SidebarContent";
+import SidebarContent from "./SidebarContent";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function Sidebar() {
         aria-controls="dashboard-sidebar"
         onClick={() => setIsOpen((prev) => !prev)}
         className={[
-          "fixed right-4 top-4 z-50 md:hidden",
+          "fixed left-4 top-4 z-50 md:hidden",
           "flex size-11 items-center justify-center",
           "rounded-md border border-(--panel-border)",
           "bg-(--panel-bg) text-(--text-main) shadow-(--shadow-md)",
@@ -54,7 +54,7 @@ export default function Sidebar() {
       </button>
 
       {/* Backdrop Control */}
-      
+
       <div
         aria-hidden="true"
         onClick={close}
@@ -79,8 +79,8 @@ export default function Sidebar() {
           "border-l border-(--panel-border) bg-(--bg-main)",
           "will-change-transform transition-transform duration-300 ease-out",
           isOpen ? "translate-x-0" : "translate-x-full",
-          "md:sticky md:top-3.5 md:z-10 md:translate-x-0",
-          "md:h-[calc(100dvh-28px)] md:w-65 md:shrink-0",
+          "md:sticky md:top-0 md:z-10 md:translate-x-0",
+          "md:h-full md:max-h-full md:w-65 md:shrink-0",
           "md:rounded-lg md:border md:transition-none",
           "overflow-hidden",
         ].join(" ")}

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -11,6 +10,7 @@ const words = [
 ];
 
 export default function TypingEffect() {
+  
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -42,12 +42,15 @@ export default function TypingEffect() {
   }, [charIndex, isDeleting, currentWord.length]);
 
   return (
-    <span dir="rtl" className="inline-flex min-h-5 items-center">
-      <span>{currentWord.slice(0, charIndex)}</span>
+    <span
+      dir="rtl"
+      className="inline-flex h-5 min-w-0 max-w-full items-center overflow-hidden whitespace-nowrap"
+    >
+      <span className="truncate">{currentWord.slice(0, charIndex)}</span>
 
       <span
         aria-hidden="true"
-        className="mr-1 inline-block h-3.5 w-px animate-pulse rounded-full bg-(--text-muted)"
+        className="mr-1 inline-block h-3.5 w-0.75 shrink-0 animate-pulse rounded-full bg-(--text-muted)"
       />
     </span>
   );
