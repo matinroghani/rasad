@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CaretDownIcon } from "@phosphor-icons/react";
 
-import { sidebarItems } from "@/data/constants/SidebarItems/sidebarItems";
+import { sidebarItems } from "@/data/constants/sidebar/sidebarItems";
 
 import {
   SIDEBAR_EASE,
@@ -19,7 +19,7 @@ import {
   sidebarUnderlineTransition,
   underlineVariants,
   type SidebarColorKey,
-} from "./sidebar.config";
+} from "../../../data/constants/sidebar/sidebar.config";
 
 import useSidebarScrollIndicator from "./hooks/useSidebarScrollIndicator";
 
