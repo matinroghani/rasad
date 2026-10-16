@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef, useState } from "react";
@@ -62,31 +63,32 @@ export default function HerdUpload({
         handleFiles(Array.from(event.dataTransfer.files));
       }}
       className={[
-        "relative isolate overflow-hidden rounded-[1.625rem] border bg-white",
-        "transition duration-200",
+        "relative isolate overflow-hidden rounded-[var(--radius-xl)] border",
+        "bg-[var(--panel-bg)] transition-[background-color,border-color,box-shadow] duration-200",
         isDragging
-          ? "border-[#65a86b] bg-[#f0f8ed] ring-4 ring-[#65a86b]/10"
-          : "border-[#e1e9dc] shadow-sm",
+          ? "border-[var(--accent-green)] bg-[var(--green-soft)] shadow-[var(--shadow-glow)]"
+          : "border-[var(--panel-border)] shadow-[var(--shadow-sm)]",
       ].join(" ")}
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -end-[4rem] -top-[6rem] -z-10 aspect-square w-[40%] max-w-64 rounded-full bg-[#edf6e8]/80 blur-3xl"
+        className="pointer-events-none absolute -end-[4rem] -top-[6rem] -z-10 aspect-square w-[40%] max-w-64 rounded-full bg-[var(--green-soft)] opacity-70 blur-3xl"
       />
+
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-[7rem] -start-[4rem] -z-10 aspect-square w-[40%] max-w-64 rounded-full bg-[#f2f7eb] blur-3xl"
+        className="pointer-events-none absolute -bottom-[7rem] -start-[4rem] -z-10 aspect-square w-[40%] max-w-64 rounded-full bg-[var(--surface-warm)] blur-3xl"
       />
 
       <div className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,16.25rem)] lg:items-center lg:gap-8 lg:p-8">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-[0.375em] rounded-full border border-[#dce9d5] bg-[#f2f8ee] px-3 py-1.5 text-[0.6875rem] font-bold text-[#56865a]">
+            <span className="inline-flex items-center gap-[0.375em] rounded-full border border-[var(--border)] bg-[var(--green-soft)] px-3 py-1.5 text-[0.6875rem] font-bold text-[var(--accent-green)]">
               <Microchip className="size-[1.15em]" />
               تشخیص هویت هوشمند
             </span>
 
-            <span className="inline-flex items-center gap-[0.375em] text-[0.6875rem] text-[#899587]">
+            <span className="inline-flex items-center gap-[0.375em] text-[0.6875rem] text-[var(--text-light)]">
               <ShieldCheck className="size-[1.15em]" />
               آماده‌ی اتصال به مدل تشخیص
             </span>
@@ -94,12 +96,12 @@ export default function HerdUpload({
 
           <h2
             id="herd-upload-title"
-            className="mt-4 text-xl font-extrabold leading-9 text-[#293b2d] sm:text-2xl"
+            className="mt-4 text-xl font-extrabold leading-9 text-[var(--text-main)] sm:text-2xl"
           >
             تصاویر گله را وارد کنید
           </h2>
 
-          <p className="mt-2 max-w-2xl text-sm leading-7 text-[#788574]">
+          <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--text-muted)]">
             با انتخاب تصاویر دام‌ها، فرایند ثبت و شناسایی آن‌ها را آغاز کنید.
             در نسخه‌ی متصل به مدل، تصاویر تکراری باید به پروفایل دام موجود
             مرتبط شوند؛ نه اینکه پروفایل جدید بسازند.
@@ -110,13 +112,22 @@ export default function HerdUpload({
               type="button"
               disabled={isLoading}
               onClick={() => inputRef.current?.click()}
-              className="inline-flex min-h-[2.75rem] items-center justify-center gap-2 rounded-xl bg-[#4f8c55] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#417b48] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+              className={[
+                "inline-flex min-h-[2.75rem] items-center justify-center gap-2",
+                "rounded-[var(--radius-sm)] bg-[var(--accent-green)] px-5 py-3",
+                "text-sm font-bold text-[var(--text-inverse)] shadow-[var(--shadow-sm)]",
+                "transition-[background-color,box-shadow,transform] duration-200",
+                "hover:bg-[var(--accent-green-hover)] hover:shadow-[var(--shadow-md)]",
+                "active:scale-[0.98] focus-visible:outline-none focus-visible:shadow-[var(--focus-ring)]",
+                "disabled:cursor-not-allowed disabled:opacity-60",
+              ].join(" ")}
             >
               {isLoading ? (
                 <LoaderCircle className="size-[1.15em] animate-spin" />
               ) : (
                 <Camera className="size-[1.15em]" />
               )}
+
               {isLoading ? "در حال پردازش..." : "انتخاب تصاویر"}
             </button>
 
@@ -124,7 +135,15 @@ export default function HerdUpload({
               type="button"
               disabled={isLoading}
               onClick={onAddManual}
-              className="inline-flex min-h-[2.75rem] items-center justify-center gap-2 rounded-xl border border-[#dce5d7] bg-white/80 px-4 py-3 text-sm font-semibold text-[#435544] transition hover:border-[#b8cfb0] hover:bg-[#f7faf4] disabled:cursor-not-allowed disabled:opacity-60"
+              className={[
+                "inline-flex min-h-[2.75rem] items-center justify-center gap-2",
+                "rounded-[var(--radius-sm)] border border-[var(--border)]",
+                "bg-[var(--surface)] px-4 py-3 text-sm font-semibold text-[var(--text-main)]",
+                "transition-[background-color,border-color,color] duration-200",
+                "hover:border-[var(--border-hover)] hover:bg-[var(--green-soft)]",
+                "focus-visible:outline-none focus-visible:shadow-[var(--focus-ring)]",
+                "disabled:cursor-not-allowed disabled:opacity-60",
+              ].join(" ")}
             >
               <Keyboard className="size-[1.15em]" />
               ثبت دستی بدون عکس
@@ -144,29 +163,32 @@ export default function HerdUpload({
             />
           </div>
 
-          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[0.6875rem] text-[#8b9686]">
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[0.6875rem] text-[var(--text-light)]">
             <span className="inline-flex items-center gap-[0.375em]">
-              <CheckCircle2 className="size-[1.15em] text-[#77a879]" />
+              <CheckCircle2 className="size-[1.15em] text-[var(--success)]" />
               انتخاب چند تصویر
             </span>
+
             <span className="inline-flex items-center gap-[0.375em]">
-              <CheckCircle2 className="size-[1.15em] text-[#77a879]" />
+              <CheckCircle2 className="size-[1.15em] text-[var(--success)]" />
               پشتیبانی از فرمت‌های تصویری
             </span>
+
             <span>حداکثر ۲۰ فایل، هر فایل تا ۱۰ مگابایت</span>
           </div>
 
           {selectedFiles.length > 0 && (
-            <div className="mt-4 flex max-w-xl items-center gap-3 rounded-xl border border-[#dfe9d8] bg-white/90 p-3">
-              <span className="flex aspect-square w-full max-w-[2.25rem] shrink-0 items-center justify-center rounded-lg bg-[#edf6e9] text-[#568b59]">
+            <div className="mt-4 flex max-w-xl items-center gap-3 rounded-[var(--radius-sm)] border border-[var(--panel-border)] bg-[var(--surface)] p-3">
+              <span className="flex aspect-square w-full max-w-9 shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--green-soft)] text-[var(--accent-green)]">
                 <FileImage className="size-[55%]" />
               </span>
 
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-bold text-[#344936]">
+                <p className="text-sm font-bold text-[var(--text-main)]">
                   {selectedFiles.length.toLocaleString("fa-IR")} تصویر انتخاب‌شده
                 </p>
-                <p className="mt-1 truncate text-xs text-[#8a9585]">
+
+                <p className="mt-1 truncate text-xs text-[var(--text-muted)]">
                   {selectedFiles.length === 1
                     ? selectedFiles[0].name
                     : `${selectedFiles[0].name} و ${selectedFiles.length - 1} فایل دیگر`}
@@ -178,7 +200,7 @@ export default function HerdUpload({
                 aria-label="پاک کردن انتخاب تصاویر"
                 disabled={isLoading}
                 onClick={clearSelection}
-                className="flex aspect-square w-full max-w-8 shrink-0 items-center justify-center rounded-lg text-[#879282] transition hover:bg-[#f3f6ef] hover:text-[#354736] disabled:opacity-40"
+                className="flex aspect-square w-full max-w-8 shrink-0 items-center justify-center rounded-[var(--radius-sm)] text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-secondary)] hover:text-[var(--text-main)] focus-visible:outline-none focus-visible:shadow-[var(--focus-ring)] disabled:opacity-40"
               >
                 <X className="size-[55%]" />
               </button>
@@ -188,22 +210,24 @@ export default function HerdUpload({
 
         <div
           className={[
-            "flex min-h-[11rem] flex-col items-center justify-center rounded-[1.375rem] border border-dashed px-5 py-6 text-center transition",
+            "flex min-h-44 flex-col items-center justify-center rounded-[var(--radius-lg)] border border-dashed px-5 py-6 text-center",
+            "transition-[background-color,border-color] duration-200",
             isDragging
-              ? "border-[#69a86b] bg-white/80"
-              : "border-[#d4e2cd] bg-[#f7faf4]/90",
+              ? "border-[var(--accent-green)] bg-[var(--green-soft)]"
+              : "border-[var(--border-hover)] bg-[var(--surface-warm)]",
           ].join(" ")}
         >
-          <div className="relative flex aspect-square w-full max-w-[4.25rem] items-center justify-center rounded-[1.375rem] bg-white text-[#5b9961] shadow-sm">
+          <div className="relative flex aspect-square w-full max-w-17 items-center justify-center rounded-[var(--radius-lg)] bg-[var(--surface)] text-[var(--accent-green)] shadow-[var(--shadow-sm)]">
             <CloudUpload className="size-[45%]" strokeWidth={1.6} />
-            <span className="absolute -end-1 -top-1 aspect-square w-[24%] rounded-full border-[3px] border-white bg-[#8fbe76]" />
+
+            <span className="absolute -inset-e-1 -top-1 aspect-square w-[24%] rounded-full border-[3px] border-[var(--surface)] bg-[var(--accent-green-light)]" />
           </div>
 
-          <p className="mt-4 text-sm font-bold text-[#405542]">
+          <p className="mt-4 text-sm font-bold text-[var(--text-main)]">
             {isDragging ? "فایل‌ها را رها کنید" : "تصاویر را اینجا رها کنید"}
           </p>
 
-          <p className="mt-1.5 text-xs leading-6 text-[#899587]">
+          <p className="mt-1.5 text-xs leading-6 text-[var(--text-muted)]">
             یا از دکمه‌ی انتخاب تصاویر استفاده کنید
           </p>
         </div>

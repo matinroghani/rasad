@@ -2,32 +2,38 @@ import TypingEffect from "@/components/ui/TypingEffect";
 
 export default function HeaderLogoarea() {
   return (
-    <div className="flex w-full min-w-0 items-center justify-start gap-2 sm:gap-3">
+    <div className="flex w-full min-w-0 items-center gap-3 sm:gap-4">
       {/* Logo */}
       <div
         aria-label="Rasad logo"
         className={[
-          "flex size-9 shrink-0 items-center justify-center sm:size-11 xl:size-12",
-          "rounded-md border border-white/20",
-          "bg-white/6 text-white/90",
-          "text-lg font-bold tracking-tight sm:text-xl xl:text-2xl",
-          "transition-transform duration-300 ease-(--ease-spring)",
-          "hover:scale-[1.03]",
+          "relative flex size-10 shrink-0 items-center justify-center",
+          "overflow-hidden rounded-[var(--radius-md)]",
+          "border border-white/15",
+          "bg-white/[0.06] text-[var(--accent-green-glow)]",
+          "text-xl font-black tracking-tight sm:size-12 sm:text-2xl",
+          "shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]",
+          "transition-[background-color,border-color] duration-200",
+          "hover:border-[var(--accent-green-light)]/50",
+          "hover:bg-white/10",
         ].join(" ")}
       >
         R
+
+        <span
+          aria-hidden="true"
+          className="absolute bottom-0 right-0 h-1 w-4 rounded-tl-full bg-[var(--accent-green-neon)]"
+        />
       </div>
 
-      {/* Brand Information */}
-      <div className="flex min-w-0 flex-col items-start gap-1 sm:gap-2">
-        {/* Brand Name */}
-        <div className="flex min-w-0 max-w-full items-center justify-start gap-1.5 sm:gap-2">
+      {/* Brand information */}
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5">
+        {/* Brand name */}
+        <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
           <span
             className={[
-              "shrink-0 bg-[linear-gradient(90deg,#d9f0d9,#b5e3b5,#8fd18f,#6fbf73,#8fd18f,#b5e3b5)]",
-              "bg-size-[300%_100%] bg-clip-text text-transparent",
-              "animate-[gradient-flow_5s_ease_infinite]",
-              "text-lg font-black leading-none sm:text-xl xl:text-2xl",
+              "shrink-0 text-xl font-black leading-tight tracking-tight",
+              "text-[var(--accent-green-glow)] sm:text-2xl",
             ].join(" ")}
           >
             رصد
@@ -35,21 +41,17 @@ export default function HeaderLogoarea() {
 
           <span
             aria-hidden="true"
-            className="shrink-0 text-xs font-light text-(--text-light)/70 sm:text-sm"
-          >
-            |
-          </span>
+            className="hidden h-4 w-px bg-white/20 sm:block"
+          />
 
-          <span className="min-w-0 truncate text-xs font-semibold leading-tight tracking-tight sm:text-sm">
+          <span className="min-w-0 text-xs font-medium leading-5 text-white/85 sm:text-sm">
             رایا سنجش دانا
           </span>
         </div>
 
-        {/* Typing Effect */}
-        <div className="h-5 w-full min-w-0 overflow-hidden text-[10px] font-medium leading-5 sm:text-xs">
-          <div className="flex h-full min-w-0 items-center justify-start">
-            <TypingEffect />
-          </div>
+        {/* Typing effect */}
+        <div className="flex h-5 min-w-0 items-center overflow-hidden text-[var(--font-size-xs)] font-medium leading-5 text-white/65 sm:text-[var(--font-size-sm)]">
+          <TypingEffect />
         </div>
       </div>
     </div>
