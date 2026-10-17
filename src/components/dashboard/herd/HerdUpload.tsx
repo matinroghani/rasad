@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef, useState } from "react";
@@ -13,12 +12,17 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
+import Aurora from "@/components/shadcn/Aurora";
+import Silk from "@/components/shadcn/Silk";
 
 interface HerdUploadProps {
   isLoading: boolean;
   onUpload: (files: File[]) => void;
   onAddManual: () => void;
 }
+
+const MAX_FILES = 20;
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
 export default function HerdUpload({
   isLoading,
@@ -28,16 +32,40 @@ export default function HerdUpload({
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [fileError, setFileError] = useState("");
 
   function handleFiles(files: File[]) {
     if (!files.length || isLoading) return;
 
-    setSelectedFiles(files);
-    onUpload(files);
+    const imageFiles = files.filter((file) => file.type.startsWith("image/"));
+
+    if (!imageFiles.length) {
+      setFileError("لطفاً حداقل یک فایل تصویری انتخاب کنید.");
+      return;
+    }
+
+    if (imageFiles.length > MAX_FILES) {
+      setFileError(`حداکثر ${MAX_FILES} تصویر را می‌توانید انتخاب کنید.`);
+      return;
+    }
+
+    const oversizedFile = imageFiles.find((file) => file.size > MAX_FILE_SIZE);
+
+    if (oversizedFile) {
+      setFileError(`حجم فایل «${oversizedFile.name}» بیشتر از ۱۰ مگابایت است.`);
+      return;
+    }
+
+    setFileError("");
+    setSelectedFiles(imageFiles);
+    onUpload(imageFiles);
   }
 
   function clearSelection() {
+    if (isLoading) return;
+
     setSelectedFiles([]);
+    setFileError("");
 
     if (inputRef.current) {
       inputRef.current.value = "";
@@ -49,9 +77,18 @@ export default function HerdUpload({
       aria-labelledby="herd-upload-title"
       onDragEnter={(event) => {
         event.preventDefault();
-        if (!isLoading) setIsDragging(true);
+
+        if (!isLoading) {
+          setIsDragging(true);
+        }
       }}
-      onDragOver={(event) => event.preventDefault()}
+      onDragOver={(event) => {
+        event.preventDefault();
+
+        if (!isLoading) {
+          event.dataTransfer.dropEffect = "copy";
+        }
+      }}
       onDragLeave={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget as Node)) {
           setIsDragging(false);
@@ -60,6 +97,7 @@ export default function HerdUpload({
       onDrop={(event) => {
         event.preventDefault();
         setIsDragging(false);
+
         handleFiles(Array.from(event.dataTransfer.files));
       }}
       className={[
@@ -70,17 +108,54 @@ export default function HerdUpload({
           : "border-[var(--panel-border)] shadow-[var(--shadow-sm)]",
       ].join(" ")}
     >
+      {/* Silk Background */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -end-[4rem] -top-[6rem] -z-10 aspect-square w-[40%] max-w-64 rounded-full bg-[var(--green-soft)] opacity-70 blur-3xl"
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      >
+        <Silk
+          color="#397D43"
+          sheenColor="#FFFFFF"
+          speed={3}
+          scale={1.3}
+          rotation={0}
+          sheen={1.2}
+          depth={1}
+          glow={0.8}
+          noiseIntensity={0.8}
+          mouseInteraction={false}
+          clickRipple={false}
+          intro
+          ripple={0.8}
+          wave={0.9}
+          variation={0.3}
+          interactionStrength={0.8}
+          fade={0}
+          lightMode
+        />
+      </div>
+
+      {/* Decorative glow */}
+      <div
+        aria-hidden="true"
+        className={[
+          "pointer-events-none absolute -end-[4rem] -top-[6rem]",
+          "z-0 aspect-square w-[40%] max-w-64 rounded-full",
+          "bg-(--green-soft) opacity-70 blur-3xl",
+        ].join(" ")}
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-[7rem] -start-[4rem] -z-10 aspect-square w-[40%] max-w-64 rounded-full bg-[var(--surface-warm)] blur-3xl"
+        className={[
+          "pointer-events-none absolute -bottom-[7rem] -start-[4rem]",
+          "z-0 aspect-square w-[40%] max-w-64 rounded-full",
+          "bg-[var(--surface-warm)] blur-3xl",
+        ].join(" ")}
       />
 
-      <div className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,16.25rem)] lg:items-center lg:gap-8 lg:p-8">
+      {/* Main content */}
+      <div className="relative bg-(--green-soft) z-10 grid gap-6 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,16.25rem)] lg:items-center lg:gap-8 lg:p-8">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-[0.375em] rounded-full border border-[var(--border)] bg-[var(--green-soft)] px-3 py-1.5 text-[0.6875rem] font-bold text-[var(--accent-green)]">
@@ -102,9 +177,9 @@ export default function HerdUpload({
           </h2>
 
           <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--text-muted)]">
-            با انتخاب تصاویر دام‌ها، فرایند ثبت و شناسایی آن‌ها را آغاز کنید.
-            در نسخه‌ی متصل به مدل، تصاویر تکراری باید به پروفایل دام موجود
-            مرتبط شوند؛ نه اینکه پروفایل جدید بسازند.
+            با انتخاب تصاویر دام‌ها، فرایند ثبت و شناسایی آن‌ها را آغاز کنید. در
+            نسخه‌ی متصل به مدل، تصاویر تکراری باید به پروفایل دام موجود مرتبط
+            شوند؛ نه اینکه پروفایل جدید بسازند.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-3">
@@ -177,6 +252,15 @@ export default function HerdUpload({
             <span>حداکثر ۲۰ فایل، هر فایل تا ۱۰ مگابایت</span>
           </div>
 
+          {fileError && (
+            <p
+              role="alert"
+              className="mt-3 text-sm font-medium text-[var(--danger)]"
+            >
+              {fileError}
+            </p>
+          )}
+
           {selectedFiles.length > 0 && (
             <div className="mt-4 flex max-w-xl items-center gap-3 rounded-[var(--radius-sm)] border border-[var(--panel-border)] bg-[var(--surface)] p-3">
               <span className="flex aspect-square w-full max-w-9 shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--green-soft)] text-[var(--accent-green)]">
@@ -185,7 +269,8 @@ export default function HerdUpload({
 
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-bold text-[var(--text-main)]">
-                  {selectedFiles.length.toLocaleString("fa-IR")} تصویر انتخاب‌شده
+                  {selectedFiles.length.toLocaleString("fa-IR")} تصویر
+                  انتخاب‌شده
                 </p>
 
                 <p className="mt-1 truncate text-xs text-[var(--text-muted)]">
@@ -200,7 +285,13 @@ export default function HerdUpload({
                 aria-label="پاک کردن انتخاب تصاویر"
                 disabled={isLoading}
                 onClick={clearSelection}
-                className="flex aspect-square w-full max-w-8 shrink-0 items-center justify-center rounded-[var(--radius-sm)] text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-secondary)] hover:text-[var(--text-main)] focus-visible:outline-none focus-visible:shadow-[var(--focus-ring)] disabled:opacity-40"
+                className={[
+                  "flex aspect-square w-full max-w-8 shrink-0 items-center justify-center",
+                  "rounded-[var(--radius-sm)] text-[var(--text-muted)]",
+                  "transition-colors hover:bg-[var(--bg-secondary)] hover:text-[var(--text-main)]",
+                  "focus-visible:outline-none focus-visible:shadow-[var(--focus-ring)]",
+                  "disabled:cursor-not-allowed disabled:opacity-40",
+                ].join(" ")}
               >
                 <X className="size-[55%]" />
               </button>
@@ -208,6 +299,7 @@ export default function HerdUpload({
           )}
         </div>
 
+        {/* Drag and drop area */}
         <div
           className={[
             "flex min-h-44 flex-col items-center justify-center rounded-[var(--radius-lg)] border border-dashed px-5 py-6 text-center",

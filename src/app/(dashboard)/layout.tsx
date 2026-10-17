@@ -1,4 +1,3 @@
-
 import DashboardMotion from "@/components/layout/DashboardMotion";
 import Header from "@/components/layout/header/Header";
 import Sidebar from "@/components/layout/sidebar/Sidebar";
@@ -8,9 +7,7 @@ type DashboardLayoutProps = Readonly<{
   children: ReactNode;
 }>;
 
-export default function DashboardLayout({
-  children,
-}: DashboardLayoutProps) {
+export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div
       className={[
@@ -27,6 +24,7 @@ export default function DashboardLayout({
         <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-4">
           <main
             className={[
+              "dashboard-content-scroll",
               "relative z-1 flex min-h-0 min-w-0 flex-1 flex-col",
               "overflow-y-auto rounded-lg",
               "border-[1.5px] border-(--panel-border)",

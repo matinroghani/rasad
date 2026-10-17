@@ -247,3 +247,47 @@
   --shadow-glow:
     0 0 24px rgba(111, 191, 115, 0.12);
 }
+
+/* ==================================
+   React Toastify
+   ================================== */
+
+:root {
+  /* ---------- Backgrounds ---------- */
+  --toastify-color-light: var(--surface);
+  --toastify-color-dark: var(--surface);
+
+  /* ---------- Type Colors (ایکون + پروگرس) ---------- */
+  --toastify-color-info: var(--accent-blue);
+  --toastify-color-success: var(--accent-green);
+  --toastify-color-warning: var(--accent-orange);
+  --toastify-color-error: var(--accent-red);
+
+  /* ---------- Icon Colors ---------- */
+  --toastify-icon-color-info: var(--accent-blue);
+  --toastify-icon-color-success: var(--accent-green);
+  --toastify-icon-color-warning: var(--accent-orange);
+  --toastify-icon-color-error: var(--accent-red);
+
+  /* ---------- Progress Bar ---------- */
+  --toastify-color-progress-light: var(--accent-green);
+  --toastify-color-progress-dark: var(--accent-green);
+  --toastify-color-progress-info: var(--accent-blue);
+  --toastify-color-progress-success: var(--accent-green);
+  --toastify-color-progress-warning: var(--accent-orange);
+  --toastify-color-progress-error: var(--accent-red);
+
+  /* ---------- Text ---------- */
+  --toastify-text-color-light: var(--text-main);
+  --toastify-text-color-dark: var(--text-main);
+
+  /* ---------- Typography ---------- */
+  --toastify-font-family: var(--font-family);
+
+  /* ---------- Layout ---------- */
+  --toastify-toast-width: 360px;
+  --toastify-toast-min-height: 56px;
+  --toastify-toast-padding: 16px;
+  --toastify-toast-bd-radius: var(--radius-lg);
+  --toastify-toast-shadow: var(--shadow-lg);
+}

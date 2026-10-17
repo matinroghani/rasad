@@ -10,8 +10,7 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile-Menu-Button */}
-
+      {/* Mobile Menu Button */}
       <button
         type="button"
         aria-label={isOpen ? "بستن منو" : "باز کردن منو"}
@@ -19,20 +18,45 @@ export default function Sidebar() {
         aria-controls="dashboard-sidebar"
         onClick={() => setIsOpen((prev) => !prev)}
         className={[
-          "fixed left-4 top-4 z-50 md:hidden",
-          "flex size-11 items-center justify-center",
-          "rounded-md border border-(--panel-border)",
-          "bg-(--panel-bg) text-(--text-main) shadow-(--shadow-md)",
-          "transition-transform duration-200 active:scale-95",
-          "focus-visible:outline-none focus-visible:ring-2",
-          "focus-visible:ring-(--focus-ring-color,var(--accent-green))",
-          "focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-main)",
+          "group fixed left-4 top-4 z-50 md:hidden",
+          "flex size-12 items-center justify-center",
+          "overflow-hidden rounded-xl border",
+          "border-(--panel-border)",
+          "bg-(--surface) text-(--accent-green)",
+          "shadow-(--shadow-md)",
+          "transition-all duration-300 ease-out",
+          "hover:border-(--accent-green)",
+          "hover:bg-(--green-soft)",
+          "hover:shadow-(--shadow-glow)",
+          "active:scale-90",
+          "focus-visible:outline-none",
+          "focus-visible:ring-2",
+          "focus-visible:ring-(--focus-ring)",
+          "focus-visible:ring-offset-2",
+          "focus-visible:ring-offset-(--bg-main)",
+          isOpen ? "border-(--accent-green) bg-(--green-soft)" : "",
         ].join(" ")}
       >
+        {/* Subtle background glow */}
+        <span
+          aria-hidden="true"
+          className={[
+            "absolute inset-0 rounded-xl",
+            "bg-(--accent-green)",
+            "opacity-0 transition-opacity duration-300",
+            "group-hover:opacity-[0.06]",
+            isOpen ? "opacity-[0.08]" : "",
+          ].join(" ")}
+        />
+
         <svg
           viewBox="0 0 24 24"
           fill="none"
-          className="size-5"
+          className={[
+            "relative size-6",
+            "transition-transform duration-300 ease-out",
+            isOpen ? "rotate-90" : "rotate-0",
+          ].join(" ")}
           aria-hidden="true"
         >
           {isOpen ? (
@@ -41,6 +65,7 @@ export default function Sidebar() {
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
+              strokeLinejoin="round"
             />
           ) : (
             <path
@@ -48,6 +73,7 @@ export default function Sidebar() {
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
+              className="transition-all duration-300"
             />
           )}
         </svg>

@@ -1,4 +1,3 @@
-
 export type CowHealthStatus = "healthy" | "suspected" | "sick";
 
 export type CowGender = "female" | "male";
@@ -16,6 +15,12 @@ export interface Cow {
   healthStatus: CowHealthStatus;
   hasTreatment: boolean;
   createdAt: string;
+}
+
+export interface ManualCowInput {
+  earTag: string;
+  gender: CowGender;
+  ageMonths: number | null;
 }
 
 export type HerdFilter =

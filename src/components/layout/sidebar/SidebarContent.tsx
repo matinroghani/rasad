@@ -54,7 +54,7 @@ export default function SidebarContent({
           "h-full min-h-0 min-w-0",
           "overflow-x-hidden overflow-y-auto overscroll-contain",
           "touch-pan-y p-3 pb-16 sm:p-3.5 sm:pb-16",
-          "scrollbar-hidden [&::-webkit-scrollbar]:hidden",
+          "!scrollbar-hidden [&::-webkit-scrollbar]:hidden",
           "fade-y",
         ].join(" ")}
       >

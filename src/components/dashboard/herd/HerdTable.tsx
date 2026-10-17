@@ -1,4 +1,3 @@
-
 import type { Cow } from "@/types/herd/herd";
 import { useHerdTable } from "./hooks/useHerdTable";
 import CowAvatar from "./components/CowAvatar";
@@ -42,7 +41,7 @@ export default function HerdTable({ cows }: HerdTableProps) {
 
       {/* Desktop */}
       <div className="hidden overflow-hidden rounded-[var(--radius-lg)] border border-[var(--panel-border)] bg-[var(--panel-bg)] shadow-[var(--shadow-sm)] lg:block">
-        <table className="w-full table-fixed text-start text-sm">
+        <table className="w-full table-fixed text-center text-sm">
           <colgroup>
             {COLUMN_WIDTHS.map((width, i) => (
               <col key={i} className={width} />
@@ -55,7 +54,7 @@ export default function HerdTable({ cows }: HerdTableProps) {
                 <th
                   key={column.key}
                   scope="col"
-                  className="truncate px-3 py-4 font-semibold first:ps-5 last:pe-5"
+                  className="truncate px-3 py-4 font-semibold first:ps-5 last:pe-5 first:text-start"
                 >
                   {column.label}
                 </th>
@@ -72,7 +71,7 @@ export default function HerdTable({ cows }: HerdTableProps) {
                   key={cow.id}
                   className="transition-colors duration-150 hover:bg-[var(--bg-secondary)]"
                 >
-                  <td className="px-3 py-4 first:ps-5">
+                  <td className="px-3 py-4 first:ps-5 first:text-start">
                     <div className="flex items-center gap-3">
                       <div className="w-full max-w-10 shrink-0">
                         <CowAvatar cow={cow} />
@@ -90,33 +89,33 @@ export default function HerdTable({ cows }: HerdTableProps) {
                     </div>
                   </td>
 
-                  <td className="truncate whitespace-nowrap px-3 py-4 font-semibold tabular-nums text-[var(--text-muted)]">
+                  <td className="truncate whitespace-nowrap px-3 py-4 text-center font-semibold tabular-nums text-[var(--text-muted)]">
                     {row.earTagLabel}
                   </td>
 
-                  <td className="truncate whitespace-nowrap px-3 py-4 text-[var(--text-muted)]">
+                  <td className="truncate whitespace-nowrap px-3 py-4 text-center text-[var(--text-muted)]">
                     {row.genderLabel}
                     <span className="mx-1.5 text-[var(--text-light)]">/</span>
                     {row.ageLabel}
                   </td>
 
-                  <td className="truncate whitespace-nowrap px-3 py-4 tabular-nums text-[var(--text-muted)]">
+                  <td className="truncate whitespace-nowrap px-3 py-4 text-center tabular-nums text-[var(--text-muted)]">
                     {row.daysInMilkLabel}
                   </td>
 
-                  <td className="truncate whitespace-nowrap px-3 py-4 font-bold tabular-nums text-[var(--accent-green)]">
+                  <td className="truncate whitespace-nowrap px-3 py-4 text-center font-bold tabular-nums text-[var(--accent-green)]">
                     {row.dailyMilkLabel}
                   </td>
 
-                  <td className="truncate whitespace-nowrap px-3 py-4 tabular-nums text-[var(--text-muted)]">
+                  <td className="truncate whitespace-nowrap px-3 py-4 text-center tabular-nums text-[var(--text-muted)]">
                     {row.bodyConditionScoreLabel}
                   </td>
 
-                  <td className="px-3 py-4">
+                  <td className="px-3 py-4 text-center">
                     <TreatmentBadge hasTreatment={cow.hasTreatment} />
                   </td>
 
-                  <td className="px-3 py-4 last:pe-5">
+                  <td className="px-3 py-4 text-center last:pe-5">
                     <HealthBadge status={cow.healthStatus} />
                   </td>
                 </tr>
