@@ -9,17 +9,16 @@ export default function HeaderLogoarea() {
         className={[
           "relative flex size-10 shrink-0 items-center justify-center",
           "overflow-hidden rounded-[var(--radius-md)]",
-          "border border-white/15",
-          "bg-white/[0.06] text-[var(--accent-green-glow)]",
+          "border border-[var(--header-border-subtle)]",
+          "bg-[var(--header-surface-tint)] text-[var(--accent-green-glow)]",
           "text-xl font-black tracking-tight sm:size-12 sm:text-2xl",
-          "shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]",
+          "shadow-[var(--header-inset-highlight)]",
           "transition-[background-color,border-color] duration-200",
           "hover:border-[var(--accent-green-light)]/50",
-          "hover:bg-white/10",
+          "hover:bg-[var(--header-surface-tint-hover)]",
         ].join(" ")}
       >
         R
-
         <span
           aria-hidden="true"
           className="absolute bottom-0 right-0 h-1 w-4 rounded-tl-full bg-[var(--accent-green-neon)]"
@@ -41,16 +40,16 @@ export default function HeaderLogoarea() {
 
           <span
             aria-hidden="true"
-            className="hidden h-4 w-px bg-white/20 sm:block"
+            className="hidden h-4 w-px bg-[var(--header-divider)] sm:block"
           />
 
-          <span className="min-w-0 text-xs font-medium leading-5 text-white/85 sm:text-sm">
+          <span className="min-w-0 text-xs font-medium leading-5 text-[#e6dfd3] sm:text-sm">
             رایا سنجش دانا
           </span>
         </div>
 
         {/* Typing effect */}
-        <div className="flex h-5 min-w-0 items-center overflow-hidden text-[var(--font-size-xs)] font-medium leading-5 text-white/65 sm:text-[var(--font-size-sm)]">
+        <div className="flex h-5 min-w-0 items-center overflow-hidden text-[var(--font-size-xs)] font-medium leading-5 text-[#c0b5a2] sm:text-[var(--font-size-sm)]">
           <TypingEffect />
         </div>
       </div>

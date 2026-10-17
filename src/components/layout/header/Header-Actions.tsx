@@ -2,19 +2,20 @@
 
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import {
-  Moon,
-  FileSpreadsheet,
-  CircleHelp,
-} from "lucide-react";
+import { Moon, Sun, FileSpreadsheet, CircleHelp } from "lucide-react";
+import { useTheme } from "next-themes";
 
 import LiveClock from "@/components/ui/LiveClock";
 import TopBarButton from "@/components/ui/TopBarButton";
 import SearchInput from "./header/HeaderSearch";
+import ThemeToggle from "./ThemeToggle";
 
 export default function HeaderActions() {
   const [search, setSearch] = useState("");
   const reduceMotion = useReducedMotion();
+
+  const { resolvedTheme, setTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
   const itemVariants = {
     hidden: { opacity: 0, y: 5 },
@@ -74,13 +75,12 @@ export default function HeaderActions() {
 
       {/* Actions */}
       <div className="flex shrink-0 items-center gap-1.5 border-r border-white/10 pr-2 sm:gap-2 sm:pr-3">
+        {/* Theme Toggle */}
         <motion.div variants={itemVariants} transition={itemTransition}>
-          <TopBarButton
-            icon={<Moon size={17} strokeWidth={1.8} />}
-            title="تغییر تم"
-          />
+          <ThemeToggle />
         </motion.div>
 
+        {/* Excel Export */}
         <motion.div variants={itemVariants} transition={itemTransition}>
           <TopBarButton
             icon={<FileSpreadsheet size={17} strokeWidth={1.8} />}
@@ -88,6 +88,7 @@ export default function HeaderActions() {
           />
         </motion.div>
 
+        {/* Help */}
         <motion.div variants={itemVariants} transition={itemTransition}>
           <TopBarButton
             icon={<CircleHelp size={17} strokeWidth={1.8} />}

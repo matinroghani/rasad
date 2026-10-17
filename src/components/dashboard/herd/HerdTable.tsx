@@ -28,7 +28,6 @@ export default function HerdTable({ cows }: HerdTableProps) {
 
   return (
     <div className="min-w-0">
-      {/* Mobile & Tablet */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:hidden">
         {rows.map((row) => (
           <CowMobileCard
@@ -39,7 +38,6 @@ export default function HerdTable({ cows }: HerdTableProps) {
         ))}
       </div>
 
-      {/* Desktop */}
       <div className="hidden overflow-hidden rounded-[var(--radius-lg)] border border-[var(--panel-border)] bg-[var(--panel-bg)] shadow-[var(--shadow-sm)] lg:block">
         <table className="w-full table-fixed text-center text-sm">
           <colgroup>
@@ -82,7 +80,7 @@ export default function HerdTable({ cows }: HerdTableProps) {
                           {cow.name}
                         </p>
 
-                        <p className="mt-1 truncate text-[0.6875rem] text-[var(--text-light)]">
+                        <p className="mt-1 truncate text-[var(--font-size-xs)] text-[var(--text-light)]">
                           شناسه: {row.shortId}
                         </p>
                       </div>

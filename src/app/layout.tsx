@@ -1,11 +1,16 @@
+
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { yekan } from "@/lib/font/font";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
-import ToastProvider from "@/components/ui/ToastProvider";
+import ThemeProvider from "@/components/providers/ThemeProvider";
+import ToastProvider from "@/components/providers/ToastProvider";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 const siteName = "RASAD | رایا سنجش دانا";
 
@@ -40,11 +45,20 @@ export default function RootLayout({
     <html
       lang="fa"
       dir="rtl"
-      className={cn("h-full", "antialiased", yekan.variable, "font-sans", geist.variable)}
+      suppressHydrationWarning
+      className={cn(
+        "h-full",
+        "antialiased",
+        yekan.variable,
+        "font-sans",
+        geist.variable,
+      )}
     >
       <body className="flex min-h-full flex-col">
-        <ToastProvider />
-        {children}
+        <ThemeProvider>
+          <ToastProvider />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

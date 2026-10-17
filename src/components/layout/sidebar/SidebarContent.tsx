@@ -125,16 +125,13 @@ export default function SidebarContent({
                     "group relative isolate flex w-full min-w-0",
                     "flex-col items-center gap-2.5 overflow-hidden",
                     "rounded-lg border-[1.5px] px-3.5 py-4",
-                    "text-center shadow-(--shadow-sm)",
+                    "text-center shadow-[var(--shadow-sm)]",
                     "transition-[border-color,box-shadow] duration-300",
-                    "focus-visible:outline-none focus-visible:ring-2",
-                    "focus-visible:ring-(--focus-ring-color,var(--accent-green))",
-                    "focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-main)",
-                    "hover:-translate-y-1 hover:shadow-(--shadow-md)",
+                    "focus-visible:outline-none",
+                    "focus-visible:shadow-[var(--focus-ring)]",
+                    "hover:-translate-y-1 hover:shadow-[var(--shadow-md)]",
                   ].join(" ")}
                 >
-                  
-                  {/* Hover background */}
                   <motion.span
                     aria-hidden="true"
                     variants={{
@@ -149,7 +146,6 @@ export default function SidebarContent({
                     }}
                   />
 
-                  {/* Animated underline */}
                   <motion.span
                     aria-hidden="true"
                     variants={underlineVariants}
@@ -161,7 +157,6 @@ export default function SidebarContent({
                     }}
                   />
 
-                  {/* Icon */}
                   <motion.span
                     variants={iconVariants}
                     transition={transition}
@@ -181,7 +176,6 @@ export default function SidebarContent({
                     <Icon aria-hidden="true" weight="duotone" />
                   </motion.span>
 
-                  {/* Title and description */}
                   <span className="relative z-10 flex w-full min-w-0 flex-col items-center gap-0.5">
                     <span
                       className="block max-w-full wrap-break-word text-[13.5px] font-semibold leading-6 transition-colors duration-300"
@@ -195,7 +189,7 @@ export default function SidebarContent({
                     </span>
 
                     <span
-                      className="block max-w-full wrap-break-word text-[11px] leading-5 transition-colors duration-300"
+                      className="block max-w-full wrap-break-word text-[var(--font-size-xs)] leading-5 transition-colors duration-300"
                       style={{
                         color: isActive
                           ? "rgb(255 255 255 / 88%)"
@@ -230,10 +224,10 @@ export default function SidebarContent({
             "absolute inset-x-0 bottom-0 z-20",
             "flex flex-col items-center justify-center",
             "gap-0 py-2",
-            "bg-linear-to-b from-transparent via-(--bg-main) to-(--bg-main)",
-            "text-(--accent-green)",
+            "bg-linear-to-b from-transparent via-[var(--bg-main)] to-[var(--bg-main)]",
+            "text-[var(--accent-green)]",
             "focus-visible:outline-none focus-visible:ring-2",
-            "focus-visible:ring-inset focus-visible:ring-(--accent-green)",
+            "focus-visible:ring-inset focus-visible:ring-[var(--accent-green)]",
           ].join(" ")}
         >
           <motion.span

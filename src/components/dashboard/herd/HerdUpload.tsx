@@ -108,7 +108,6 @@ export default function HerdUpload({
           : "border-[var(--panel-border)] shadow-[var(--shadow-sm)]",
       ].join(" ")}
     >
-      {/* Silk Background */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
@@ -135,13 +134,12 @@ export default function HerdUpload({
         />
       </div>
 
-      {/* Decorative glow */}
       <div
         aria-hidden="true"
         className={[
           "pointer-events-none absolute -end-[4rem] -top-[6rem]",
           "z-0 aspect-square w-[40%] max-w-64 rounded-full",
-          "bg-(--green-soft) opacity-70 blur-3xl",
+          "bg-[var(--green-soft)] opacity-70 blur-3xl",
         ].join(" ")}
       />
 
@@ -154,16 +152,15 @@ export default function HerdUpload({
         ].join(" ")}
       />
 
-      {/* Main content */}
-      <div className="relative bg-(--green-soft) z-10 grid gap-6 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,16.25rem)] lg:items-center lg:gap-8 lg:p-8">
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-[0.375em] rounded-full border border-[var(--border)] bg-[var(--green-soft)] px-3 py-1.5 text-[0.6875rem] font-bold text-[var(--accent-green)]">
+      <div className="relative bg-[var(--green-soft)] z-10 grid gap-6 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,16.25rem)] lg:items-center lg:gap-8 lg:p-8">
+        <div className="flex min-w-0 flex-col items-center text-center lg:items-start lg:text-start">
+          <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+            <span className="inline-flex items-center gap-[0.375em] rounded-full border border-[var(--border)] bg-[var(--green-soft)] px-3 py-1.5 text-[var(--font-size-xs)] font-bold text-[var(--accent-green)]">
               <Microchip className="size-[1.15em]" />
               تشخیص هویت هوشمند
             </span>
 
-            <span className="inline-flex items-center gap-[0.375em] text-[0.6875rem] text-[var(--text-light)]">
+            <span className="inline-flex items-center gap-[0.375em] text-[var(--font-size-xs)] text-[var(--text-light)]">
               <ShieldCheck className="size-[1.15em]" />
               آماده‌ی اتصال به مدل تشخیص
             </span>
@@ -182,13 +179,13 @@ export default function HerdUpload({
             شوند؛ نه اینکه پروفایل جدید بسازند.
           </p>
 
-          <div className="mt-5 flex flex-wrap gap-3">
+          <div className="mt-5 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
             <button
               type="button"
               disabled={isLoading}
               onClick={() => inputRef.current?.click()}
               className={[
-                "inline-flex min-h-[2.75rem] items-center justify-center gap-2",
+                "inline-flex min-h-[2.75rem] w-full items-center justify-center gap-2 sm:w-auto",
                 "rounded-[var(--radius-sm)] bg-[var(--accent-green)] px-5 py-3",
                 "text-sm font-bold text-[var(--text-inverse)] shadow-[var(--shadow-sm)]",
                 "transition-[background-color,box-shadow,transform] duration-200",
@@ -211,7 +208,7 @@ export default function HerdUpload({
               disabled={isLoading}
               onClick={onAddManual}
               className={[
-                "inline-flex min-h-[2.75rem] items-center justify-center gap-2",
+                "inline-flex min-h-[2.75rem] w-full items-center justify-center gap-2 sm:w-auto",
                 "rounded-[var(--radius-sm)] border border-[var(--border)]",
                 "bg-[var(--surface)] px-4 py-3 text-sm font-semibold text-[var(--text-main)]",
                 "transition-[background-color,border-color,color] duration-200",
@@ -238,7 +235,7 @@ export default function HerdUpload({
             />
           </div>
 
-          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[0.6875rem] text-[var(--text-light)]">
+          <div className="mt-5 flex w-full flex-col items-center justify-center gap-y-2 text-[var(--font-size-xs)] text-[var(--text-light)] sm:w-auto sm:flex-row sm:flex-wrap sm:justify-start sm:gap-x-5">
             <span className="inline-flex items-center gap-[0.375em]">
               <CheckCircle2 className="size-[1.15em] text-[var(--success)]" />
               انتخاب چند تصویر
@@ -255,19 +252,19 @@ export default function HerdUpload({
           {fileError && (
             <p
               role="alert"
-              className="mt-3 text-sm font-medium text-[var(--danger)]"
+              className="mt-3 w-full text-center text-sm font-medium text-[var(--danger)] sm:text-start"
             >
               {fileError}
             </p>
           )}
 
           {selectedFiles.length > 0 && (
-            <div className="mt-4 flex max-w-xl items-center gap-3 rounded-[var(--radius-sm)] border border-[var(--panel-border)] bg-[var(--surface)] p-3">
+            <div className="mx-auto mt-4 flex w-full max-w-xl items-center gap-3 rounded-[var(--radius-sm)] border border-[var(--panel-border)] bg-[var(--surface)] p-3 lg:mx-0">
               <span className="flex aspect-square w-full max-w-9 shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[var(--green-soft)] text-[var(--accent-green)]">
                 <FileImage className="size-[55%]" />
               </span>
 
-              <div className="min-w-0 flex-1">
+              <div className="min-w-0 flex-1 text-start">
                 <p className="text-sm font-bold text-[var(--text-main)]">
                   {selectedFiles.length.toLocaleString("fa-IR")} تصویر
                   انتخاب‌شده
@@ -299,7 +296,6 @@ export default function HerdUpload({
           )}
         </div>
 
-        {/* Drag and drop area */}
         <div
           className={[
             "flex min-h-44 flex-col items-center justify-center rounded-[var(--radius-lg)] border border-dashed px-5 py-6 text-center",

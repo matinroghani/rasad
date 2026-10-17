@@ -1,109 +1,83 @@
-:root {
-  /* ================================
-     Background
-     ================================ */
 
-  --bg-main: #f6f8f4;
-  --bg-secondary: #eef2ea;
+/* =========================================
+   RASAD Design System — Light Theme
+   Natural · Clinical · Agricultural
+   ========================================= */
+
+:root {
+  color-scheme: light;
+
+  /* Backgrounds */
+  --bg-main: #f3f5ee;
+  --bg-secondary: #e9eee3;
 
   --surface: #ffffff;
-  --surface-warm: #fafbf8;
-  --surface-dark: #2a3a2c;
+  --surface-warm: #fafbf6;
+  --surface-dark: #263d2b;
 
-  /* ================================
-     Panels & Borders
-     ================================ */
-
+  /* Panels & Borders */
   --panel-bg: #ffffff;
-  --panel-border: #dde5d8;
-  --panel-border-hover: #c5d4bd;
+  --panel-border: #d9e1d2;
+  --panel-border-hover: #b8c9af;
 
-  --border: #dde5d8;
-  --border-hover: #c5d4bd;
+  --border: #d9e1d2;
+  --border-hover: #b8c9af;
 
-  /* ================================
-     Primary Green
-     ================================ */
+  /* Primary Green */
+  --accent-green: #376b42;
+  --accent-green-hover: #2b5735;
+  --accent-green-light: #68966a;
+  --accent-green-neon: #4c9a59;
+  --accent-green-glow: #a2d4a5;
 
-  --accent-green: #4a7a4e;
-  --accent-green-hover: #3b633e;
-  --accent-green-light: #7aa87c;
-  --accent-green-neon: #6fbf73;
-  --accent-green-glow: #a3d9a5;
+  --green-soft: #edf5e9;
+  --green-soft-hover: #e1eedb;
 
-  --green-soft: #f0f7ec;
-  --green-soft-hover: #e5f0de;
+  /* Blue — Information & Image Coverage */
+  --accent-blue: #356d91;
+  --accent-blue-hover: #285675;
+  --accent-blue-neon: #64a8cf;
 
-  /* ================================
-     Blue
-     ================================ */
+  --blue-soft: #eaf3f9;
 
-  --accent-blue: #4a7d94;
-  --accent-blue-hover: #3b657a;
-  --accent-blue-neon: #6ab0cc;
+  /* Orange — Attention & Treatment */
+  --accent-orange: #a86c25;
+  --accent-orange-neon: #d39a43;
 
-  --blue-soft: #eef5f8;
+  --orange-soft: #fbf2e2;
 
-  /* ================================
-     Orange
-     ================================ */
+  /* Red — Critical Health Status */
+  --accent-red: #b6403b;
+  --accent-red-hover: #96332f;
+  --accent-red-neon: #df7770;
 
-  --accent-orange: #b88a3e;
-  --accent-orange-neon: #d9a755;
+  --red-soft: #fbeceb;
 
-  --orange-soft: #fdf7ec;
+  /* Teal — Secondary Analytics */
+  --accent-teal: #347d75;
+  --accent-teal-neon: #64b2a8;
 
-  /* ================================
-     Red
-     ================================ */
+  --teal-soft: #e8f4f1;
 
-  --accent-red: #b85450;
-  --accent-red-hover: #9a4340;
-  --accent-red-neon: #d47976;
+  /* Purple — Image Processing & Technical Data */
+  --accent-purple: #7160a0;
+  --accent-purple-neon: #a395d0;
 
-  --red-soft: #fcf0ef;
+  --purple-soft: #f0edfa;
 
-  /* ================================
-     Teal
-     ================================ */
+  /* Sky */
+  --accent-sky: #3e819c;
+  --accent-sky-neon: #76bdd3;
 
-  --accent-teal: #4d8a83;
-  --accent-teal-neon: #6eb5ad;
+  --sky-soft: #eaf5f8;
 
-  --teal-soft: #ecf5f4;
-
-  /* ================================
-     Purple
-     ================================ */
-
-  --accent-purple: #7a6ba8;
-  --accent-purple-neon: #a394c9;
-
-  --purple-soft: #f4f2f9;
-
-  /* ================================
-     Sky
-     ================================ */
-
-  --accent-sky: #4a8fa8;
-  --accent-sky-neon: #7fc4dd;
-
-  --sky-soft: #eef7fb;
-
-  /* ================================
-     Text
-     ================================ */
-
-  --text-main: #2f3a30;
-  --text-muted: #6b7a6c;
-  --text-light: #96a596;
-
+  /* Text */
+  --text-main: #28372b;
+  --text-muted: #647365;
+  --text-light: #879487;
   --text-inverse: #ffffff;
 
-  /* ================================
-     Status
-     ================================ */
-
+  /* Status */
   --success: var(--accent-green-neon);
   --success-soft: var(--green-soft);
 
@@ -116,33 +90,24 @@
   --danger: var(--accent-red);
   --danger-soft: var(--red-soft);
 
-  /* ================================
-     Shadows
-     ================================ */
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(35, 55, 35, 0.06);
+  --shadow-md: 0 5px 14px rgba(35, 55, 35, 0.08);
+  --shadow-lg: 0 12px 30px rgba(35, 55, 35, 0.10);
+  --shadow-xl: 0 22px 48px rgba(35, 55, 35, 0.13);
 
-  --shadow-sm: 0 1px 3px rgba(60, 80, 60, 0.04);
-  --shadow-md: 0 4px 12px rgba(60, 80, 60, 0.06);
-  --shadow-lg: 0 10px 28px rgba(60, 80, 60, 0.08);
-  --shadow-xl: 0 20px 44px rgba(60, 80, 60, 0.1);
+  --shadow-glow: 0 0 22px rgba(76, 154, 89, 0.18);
+  --shadow-danger: 0 0 0 4px rgba(182, 64, 59, 0.16);
 
-  --shadow-glow: 0 0 24px rgba(111, 191, 115, 0.18);
-
-  --shadow-danger: 0 0 0 4px rgba(184, 84, 80, 0.2);
-
-  /* ================================
-     Radius
-     ================================ */
-
+  /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 20px;
 
-  /* ================================
-     Layout
-     ================================ */
-
+  /* Layout */
   --header-height: 76px;
+  --header-text-subtle: #a89b83;
   --sidebar-width: 250px;
 
   --container-max-width: 1600px;
@@ -153,10 +118,7 @@
   --content-gap: 20px;
   --section-gap: 24px;
 
-  /* ================================
-     Typography
-     ================================ */
-
+  /* Typography */
   --font-family:
     var(--font-yekan),
     Vazirmatn,
@@ -177,117 +139,229 @@
   --line-height-normal: 1.65;
   --line-height-relaxed: 1.9;
 
-  /* ================================
-     Motion
-     ================================ */
-
+  /* Motion */
   --transition:
     all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  --transition-fast:
-    all 0.2s ease;
+  --transition-fast: all 0.2s ease;
 
   --transition-slow:
     all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 
-  --ease-out:
-    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --ease-spring:
-    cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Effects */
+  --duplicate-glow: 0 0 0 4px rgba(182, 64, 59, 0.16);
+  --focus-ring: 0 0 0 3px rgba(76, 154, 89, 0.24);
 
-  /* ================================
-     Effects
-     ================================ */
+  /* Herd Stats — Gauges */
+  --gauge-health: #43844d;
+  --gauge-coverage: #397fa8;
+  --gauge-treatment: #c58a35;
 
-  --duplicate-glow:
-    0 0 0 4px rgba(184, 84, 80, 0.2);
+  /* Herd Stats — Gauge Tones */
+  --tone-health-bg: #e7f2e3;
+  --tone-health-fg: #326c3c;
 
-  --focus-ring:
-    0 0 0 3px rgba(111, 191, 115, 0.2);
+  --tone-coverage-bg: #e5f0f8;
+  --tone-coverage-fg: #2e6c94;
+
+  --tone-treatment-bg: #f9eedb;
+  --tone-treatment-fg: #95601d;
+
+  /* Herd Stats — Metrics */
+  --tone-cows-bg: #e7f2e3;
+  --tone-cows-fg: #326c3c;
+  --accent-cows: #4c9a59;
+
+  --tone-milk-bg: #e5f0f8;
+  --tone-milk-fg: #2e6c94;
+  --accent-milk: #559ac7;
+
+  --tone-treated-bg: #f9eedb;
+  --tone-treated-fg: #95601d;
+  --accent-treated: #d39a43;
+
+  --tone-images-bg: #efebf8;
+  --tone-images-fg: #6f5b9e;
+  --accent-images: #9480c5;
+
+  /* Herd Health — Badges */
+  --health-healthy-border: #cde2c7;
+  --health-healthy-bg: #eaf5e6;
+  --health-healthy-fg: #326c3c;
+  --health-healthy-dot: #4c9a59;
+
+  --health-suspected-border: #ead7ae;
+  --health-suspected-bg: #fbf3e1;
+  --health-suspected-fg: #95601d;
+  --health-suspected-dot: #c58a35;
+
+  --health-sick-border: #edc7c3;
+  --health-sick-bg: #fbeae8;
+  --health-sick-fg: #a43834;
+  --health-sick-dot: #cf514a;
+
+  /* Herd Table — Images */
+  --table-image-border: #dce5d7;
+  --table-image-bg: #f0f3ec;
 }
 
 
-/* ==================================
-   Dark Mode
-   ================================== */
+/* =========================================
+   RASAD Design System — Dark Theme
+   Deep Forest · Elevated Surfaces
+   ========================================= */
 
 .dark {
-  --bg-main: #1a241c;
-  --bg-secondary: #202e22;
+  color-scheme: dark;
 
-  --surface: #243228;
-  --surface-warm: #27352a;
-  --surface-dark: #2a3a2c;
+  /* Backgrounds */
+  --bg-main: #141d17;
+  --bg-secondary: #1b2820;
 
-  --panel-bg: #243228;
-  --panel-border: #344838;
-  --panel-border-hover: #4a5f4e;
+  --surface: #233329;
+  --surface-warm: #29392d;
+  --surface-dark: #101b14;
 
-  --border: #344838;
-  --border-hover: #4a5f4e;
+  /* Panels & Borders */
+  --panel-bg: #233329;
+  --panel-border: #3b5140;
+  --panel-border-hover: #56745a;
 
-  --text-main: #e0e8e0;
-  --text-muted: #a8b5a9;
-  --text-light: #7f9181;
+  --border: #3b5140;
+  --border-hover: #56745a;
 
-  --green-soft: #263b29;
-  --blue-soft: #26363d;
-  --orange-soft: #3b3324;
-  --red-soft: #3b2928;
-  --teal-soft: #293b39;
-  --purple-soft: #332f3d;
-  --sky-soft: #29383d;
+  /* Primary Green */
+  --accent-green: #83bd86;
+  --accent-green-hover: #9bd09d;
+  --accent-green-light: #6da875;
+  --accent-green-neon: #8acb8e;
+  --accent-green-glow: #b2e6b5;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.18);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.22);
-  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.28);
-  --shadow-xl: 0 20px 44px rgba(0, 0, 0, 0.34);
+  --green-soft: #293f30;
+  --green-soft-hover: #344d3a;
 
-  --shadow-glow:
-    0 0 24px rgba(111, 191, 115, 0.12);
-}
+  /* Blue */
+  --accent-blue: #7bb9dc;
+  --accent-blue-hover: #9acde8;
+  --accent-blue-neon: #86c6e9;
 
-/* ==================================
-   React Toastify
-   ================================== */
+  --blue-soft: #263b49;
 
-:root {
-  /* ---------- Backgrounds ---------- */
-  --toastify-color-light: var(--surface);
-  --toastify-color-dark: var(--surface);
+  /* Orange */
+  --accent-orange: #e0ad62;
+  --accent-orange-neon: #e9bb73;
 
-  /* ---------- Type Colors (ایکون + پروگرس) ---------- */
-  --toastify-color-info: var(--accent-blue);
-  --toastify-color-success: var(--accent-green);
-  --toastify-color-warning: var(--accent-orange);
-  --toastify-color-error: var(--accent-red);
+  --orange-soft: #443725;
 
-  /* ---------- Icon Colors ---------- */
-  --toastify-icon-color-info: var(--accent-blue);
-  --toastify-icon-color-success: var(--accent-green);
-  --toastify-icon-color-warning: var(--accent-orange);
-  --toastify-icon-color-error: var(--accent-red);
+  /* Red */
+  --accent-red: #ee8981;
+  --accent-red-hover: #f5a09a;
+  --accent-red-neon: #f19a93;
 
-  /* ---------- Progress Bar ---------- */
-  --toastify-color-progress-light: var(--accent-green);
-  --toastify-color-progress-dark: var(--accent-green);
-  --toastify-color-progress-info: var(--accent-blue);
-  --toastify-color-progress-success: var(--accent-green);
-  --toastify-color-progress-warning: var(--accent-orange);
-  --toastify-color-progress-error: var(--accent-red);
+  --red-soft: #482b2a;
 
-  /* ---------- Text ---------- */
-  --toastify-text-color-light: var(--text-main);
-  --toastify-text-color-dark: var(--text-main);
+  /* Teal */
+  --accent-teal: #79c5b9;
+  --accent-teal-neon: #83d2c5;
 
-  /* ---------- Typography ---------- */
-  --toastify-font-family: var(--font-family);
+  --teal-soft: #263f3b;
 
-  /* ---------- Layout ---------- */
-  --toastify-toast-width: 360px;
-  --toastify-toast-min-height: 56px;
-  --toastify-toast-padding: 16px;
-  --toastify-toast-bd-radius: var(--radius-lg);
-  --toastify-toast-shadow: var(--shadow-lg);
+  /* Purple */
+  --accent-purple: #b5a6e4;
+  --accent-purple-neon: #c2b5ed;
+
+  --purple-soft: #383248;
+
+  /* Sky */
+  --accent-sky: #83c9df;
+  --accent-sky-neon: #91d4e8;
+
+  --sky-soft: #263e47;
+
+  /* Text */
+  --text-main: #e7eee6;
+  --text-muted: #b0beb1;
+  --text-light: #8b9c8d;
+  --text-inverse: #17231a;
+
+  /* Status */
+  --success: var(--accent-green-neon);
+  --success-soft: var(--green-soft);
+
+  --info: var(--accent-blue-neon);
+  --info-soft: var(--blue-soft);
+
+  --warning: var(--accent-orange-neon);
+  --warning-soft: var(--orange-soft);
+
+  --danger: var(--accent-red);
+  --danger-soft: var(--red-soft);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.24);
+  --shadow-lg: 0 14px 32px rgba(0, 0, 0, 0.32);
+  --shadow-xl: 0 24px 52px rgba(0, 0, 0, 0.42);
+
+  --shadow-glow: 0 0 24px rgba(138, 203, 142, 0.13);
+  --shadow-danger: 0 0 0 4px rgba(238, 137, 129, 0.18);
+
+  /* Effects */
+  --duplicate-glow: 0 0 0 4px rgba(238, 137, 129, 0.18);
+  --focus-ring: 0 0 0 3px rgba(138, 203, 142, 0.28);
+
+  /* Herd Stats — Gauges */
+  --gauge-health: #8acb8e;
+  --gauge-coverage: #80bfe3;
+  --gauge-treatment: #e4b264;
+
+  /* Herd Stats — Gauge Tones */
+  --tone-health-bg: #293f30;
+  --tone-health-fg: #a5d9a5;
+
+  --tone-coverage-bg: #263b49;
+  --tone-coverage-fg: #9bcfeb;
+
+  --tone-treatment-bg: #443725;
+  --tone-treatment-fg: #efc47e;
+
+  /* Herd Stats — Metrics */
+  --tone-cows-bg: #293f30;
+  --tone-cows-fg: #a5d9a5;
+  --accent-cows: #8acb8e;
+
+  --tone-milk-bg: #263b49;
+  --tone-milk-fg: #9bcfeb;
+  --accent-milk: #80bfe3;
+
+  --tone-treated-bg: #443725;
+  --tone-treated-fg: #efc47e;
+  --accent-treated: #e4b264;
+
+  --tone-images-bg: #383248;
+  --tone-images-fg: #c1b4ec;
+  --accent-images: #b5a6e4;
+
+  /* Herd Health — Badges */
+  --health-healthy-border: #426649;
+  --health-healthy-bg: #293f30;
+  --health-healthy-fg: #a5d9a5;
+  --health-healthy-dot: #8acb8e;
+
+  --health-suspected-border: #6c5735;
+  --health-suspected-bg: #443725;
+  --health-suspected-fg: #efc47e;
+  --health-suspected-dot: #e4b264;
+
+  --health-sick-border: #70403d;
+  --health-sick-bg: #482b2a;
+  --health-sick-fg: #f2a09a;
+  --health-sick-dot: #ee8981;
+
+  /* Herd Table — Images */
+  --table-image-border: #3b5140;
+  --table-image-bg: #1b2820;
 }

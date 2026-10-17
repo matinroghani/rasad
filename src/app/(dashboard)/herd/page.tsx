@@ -159,13 +159,13 @@ export default function HerdPage() {
                     animate="visible"
                     variants={sectionMotion}
                     transition={{ ...sectionTransition, delay: 0.08 }}
-                    className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-[11px] font-bold text-[var(--accent-green)]"
+                    className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-[var(--font-size-xs)] font-bold text-[var(--accent-green)]"
                   >
                     <Leaf size={14} />
                     مدیریت هوشمند دامداری
                   </motion.div>
 
-                  <h1 className="text-2xl font-extrabold tracking-tight text-[var(--text-main)] sm:text-[30px]">
+                  <h1 className="text-2xl font-extrabold tracking-tight text-[var(--text-main)] sm:text-[var(--font-size-4xl)]">
                     پایش گله
                   </h1>
 
@@ -192,7 +192,7 @@ export default function HerdPage() {
                   </span>
 
                   <div>
-                    <p className="text-[11px] text-[var(--text-light)]">
+                    <p className="text-[var(--font-size-xs)] text-[var(--text-light)]">
                       دام‌های ثبت‌شده
                     </p>
 
@@ -308,7 +308,7 @@ export default function HerdPage() {
 
           <HerdTable cows={filteredCows} />
 
-          <p className="px-1 text-[11px] leading-6 text-[var(--text-light)]">
+          <p className="px-1 text-[var(--font-size-xs)] leading-6 text-[var(--text-light)]">
             اطلاعات نمایش‌داده‌شده بر اساس داده‌های در دسترس فعلی است.
             تحلیل و تشخیص سلامت دام به نتیجه‌ی معتبر سرویس مربوطه نیاز دارد.
           </p>

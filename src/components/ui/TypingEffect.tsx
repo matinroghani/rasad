@@ -10,7 +10,6 @@ const words = [
 ];
 
 export default function TypingEffect() {
-  
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -50,7 +49,7 @@ export default function TypingEffect() {
 
       <span
         aria-hidden="true"
-        className="mr-1 inline-block h-3.5 w-0.75 shrink-0 animate-pulse rounded-full bg-(--text-muted)"
+        className="mr-1 inline-block h-3.5 w-0.75 shrink-0 animate-pulse rounded-full bg-[#c0b5a2]"
       />
     </span>
   );
