@@ -21,20 +21,22 @@ export default function Sidebar() {
           "group fixed left-4 top-4 z-50 md:hidden",
           "flex size-12 items-center justify-center",
           "overflow-hidden rounded-xl border",
-          "border-(--panel-border)",
-          "bg-(--surface) text-(--accent-green)",
+          "border-(--accent-green)",
+          "bg-(--surface-dark) text-(--text-inverse)",
           "shadow-(--shadow-md)",
           "transition-all duration-300 ease-out",
-          "hover:border-(--accent-green)",
-          "hover:bg-(--green-soft)",
+          "hover:border-(--accent-green-light)",
+          "hover:bg-(--accent-green-hover)",
           "hover:shadow-(--shadow-glow)",
-          "active:scale-90",
+          "active:scale-90 active:bg-(--accent-green-hover)",
           "focus-visible:outline-none",
           "focus-visible:ring-2",
           "focus-visible:ring-(--focus-ring)",
           "focus-visible:ring-offset-2",
           "focus-visible:ring-offset-(--bg-main)",
-          isOpen ? "border-(--accent-green) bg-(--green-soft)" : "",
+          isOpen
+            ? "border-(--accent-green-light) bg-(--accent-green-hover)"
+            : "",
         ].join(" ")}
       >
         {/* Subtle background glow */}
