@@ -1,5 +1,5 @@
 import { Stethoscope } from "lucide-react";
-import { herdTableConfig } from "@/data/constants/herdPage/herdTable.config";
+import { herdTableConfig } from "../config/herdTable.config";
 
 interface TreatmentBadgeProps {
   hasTreatment: boolean;

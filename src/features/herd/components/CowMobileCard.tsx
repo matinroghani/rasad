@@ -1,5 +1,4 @@
 
-import type { Cow } from "@/types/herd/herd";
 import {
   Activity,
   CalendarDays,
@@ -7,11 +6,12 @@ import {
   HeartPulse,
   Tag,
 } from "lucide-react";
-import { herdTableConfig } from "@/data/constants/herdPage/herdTable.config";
 import CowAvatar from "./CowAvatar";
 import HealthBadge from "./HealthBadge";
 import TreatmentBadge from "./TreatmentBadge";
 import MetricCell from "./MetricCell";
+import { Cow } from "../types";
+import { herdTableConfig } from "../config/herdTable.config";
 
 interface CowMobileRow {
   genderLabel: string;

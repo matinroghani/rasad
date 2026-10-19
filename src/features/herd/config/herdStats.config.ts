@@ -1,4 +1,3 @@
-import type { HerdOverviewStats } from "@/types/herd/herd";
 import {
   Activity,
   Camera,
@@ -7,6 +6,7 @@ import {
   Stethoscope,
   Users,
 } from "lucide-react";
+import { HerdOverviewStats } from "../types";
 
 export const herdGaugeConfig = (
   stats: HerdOverviewStats,

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCow } from "@fortawesome/free-solid-svg-icons";
 import { ScanSearch } from "lucide-react";
-import { herdTableConfig } from "@/data/constants/herdPage/herdTable.config";
+import { herdTableConfig } from "../config/herdTable.config";
 
 export default function EmptyState() {
   return (

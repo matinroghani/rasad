@@ -1,8 +1,6 @@
-import {
-  herdGaugeConfig,
-  herdMetricsConfig,
-} from "@/data/constants/herdPage/herdStats.config";
-import type { HerdOverviewStats } from "@/types/herd/herd";
+import { herdGaugeConfig, herdMetricsConfig } from "../config/herdStats.config";
+import { HerdOverviewStats } from "../types";
+
 
 interface HerdStatsProps {
   stats: HerdOverviewStats;

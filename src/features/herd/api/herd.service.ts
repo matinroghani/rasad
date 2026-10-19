@@ -1,4 +1,4 @@
-import { Cow, HerdUploadResult, ManualCowInput } from "@/types/herd/herd";
+import { Cow, HerdUploadResult, ManualCowInput } from "../types";
 
 const DEFAULT_UPLOAD_DELAY_MS = 1000;
 
@@ -62,7 +62,6 @@ export async function uploadHerdImages(
         throw new DOMException("Aborted", "AbortError");
       }
 
-      // شبیه‌سازی زمان پردازش هر تصویر
       await delay(delayMs, signal);
 
       if (signal?.aborted) {

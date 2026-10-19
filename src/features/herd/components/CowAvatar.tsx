@@ -1,7 +1,7 @@
 
-import type { Cow } from "@/types/herd/herd";
-import { herdTableConfig } from "@/data/constants/herdPage/herdTable.config";
 import { Image as ImageIcon } from "lucide-react";
+import { Cow } from "../types";
+import { herdTableConfig } from "../config/herdTable.config";
 
 interface CowAvatarProps {
   cow: Cow;

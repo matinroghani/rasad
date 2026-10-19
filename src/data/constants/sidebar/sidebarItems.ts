@@ -1,5 +1,5 @@
 
-import type { SidebarItem, SidebarStat } from "@/types/sidebarItemType";
+import { SidebarItem, SidebarStat } from "@/components/layout/sidebar/types";
 import {
   BarnIcon,
   ChartLineUpIcon,

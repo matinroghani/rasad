@@ -3,21 +3,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { mockHerd } from "@/data/fixtures/herd";
-import {
-  createManualCow,
-  uploadHerdImages,
-} from "@/services/herd/herd.service";
-import {
-  calculateHerdStats,
-  filterHerd,
-} from "./herd-selectors";
-import { validateHerdImages } from "./herd-validation";
-import type {
-  Cow,
-  HerdFilter,
-  HerdOperationStatus,
-  ManualCowInput,
-} from "@/types/herd/herd";
+import { Cow, HerdFilter, HerdOperationStatus, ManualCowInput } from "../types";
+import { calculateHerdStats, filterHerd } from "../selectors";
+import { validateHerdImages } from "../validation";
+import { createManualCow, uploadHerdImages } from "../api/herd.service";
+
 
 function createId(): string {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {

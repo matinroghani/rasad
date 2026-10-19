@@ -1,15 +1,13 @@
-import type { Cow } from "@/types/herd/herd";
-import { useHerdTable } from "./hooks/useHerdTable";
-import CowAvatar from "./components/CowAvatar";
-import HealthBadge from "./components/HealthBadge";
-import TreatmentBadge from "./components/TreatmentBadge";
-import EmptyState from "./components/EmptyState";
-import CowMobileCard from "./components/CowMobileCard";
-import {
-  COLUMN_WIDTHS,
-  herdTableConfig,
-} from "@/data/constants/herdPage/herdTable.config";
-import { herdTableColumns } from "@/data/constants/herdPage/herdTable";
+
+
+import { useHerdTable } from "../hooks/useHerdTable";
+import EmptyState from "./EmptyState";
+import { Cow } from "../types";
+import CowMobileCard from "./CowMobileCard";
+import { COLUMN_WIDTHS, herdTableColumns, herdTableConfig } from "../config/herdTable.config";
+import CowAvatar from "./CowAvatar";
+import TreatmentBadge from "./TreatmentBadge";
+import HealthBadge from "./HealthBadge";
 
 interface HerdTableProps {
   cows: Cow[];

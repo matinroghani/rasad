@@ -1,6 +1,6 @@
 
 
-import type { Cow, HerdFilter, HerdOverviewStats } from "@/types/herd/herd";
+import { Cow, HerdFilter, HerdOverviewStats } from "./types";
 
 export function calculateHerdStats(cows: Cow[]): HerdOverviewStats {
   const totalCows = cows.length;

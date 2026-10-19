@@ -17,7 +17,7 @@ import {
   Venus,
   X,
 } from "lucide-react";
-import type { CowGender } from "@/types/herd/herd";
+import { CowGender } from "../types";
 
 export interface ManualCowFormValues {
   earTag: string;

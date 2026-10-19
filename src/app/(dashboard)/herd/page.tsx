@@ -5,13 +5,14 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { toast } from "react-toastify";
 import { ClipboardList, Leaf } from "lucide-react";
 
-import HerdFilters from "@/components/dashboard/herd/HerdFilters";
-import HerdStats from "@/components/dashboard/herd/HerdStats";
-import HerdTable from "@/components/dashboard/herd/HerdTable";
-import HerdUpload from "@/components/dashboard/herd/HerdUpload";
-import HerdScanModal from "@/components/dashboard/herd/components/HerdScanModal";
-import ManualCowModal from "@/components/dashboard/herd/components/ManualCowModal";
-import { useHerd } from "@/features/herd/useHerd";
+import HerdFilters from "@/features/herd/components/HerdFilters";
+import { useHerd } from "@/features/herd/hooks/useHerd";
+import HerdScanModal from "@/features/herd/components/HerdScanModal";
+import ManualCowModal from "@/features/herd/components/ManualCowModal";
+import HerdStats from "@/features/herd/components/HerdStats";
+import HerdUpload from "@/features/herd/components/HerdUpload";
+import HerdTable from "@/features/herd/components/HerdTable";
+
 
 const sectionMotion = {
   hidden: { opacity: 0, y: 18 },

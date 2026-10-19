@@ -1,8 +1,9 @@
 "use client";
 
-import { herdFilters } from "@/data/constants/herdPage/herdFilters.config";
-import type { HerdFilter } from "@/types/herd/herd";
+
 import { Check, Filter } from "lucide-react";
+import { herdFilters } from "../config/herdFilters.config";
+import { HerdFilter } from "../types";
 
 interface HerdFiltersProps {
   value: HerdFilter;

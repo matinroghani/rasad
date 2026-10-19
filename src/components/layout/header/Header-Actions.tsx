@@ -7,8 +7,8 @@ import { useTheme } from "next-themes";
 
 import LiveClock from "@/components/ui/LiveClock";
 import TopBarButton from "@/components/ui/TopBarButton";
-import SearchInput from "./header/HeaderSearch";
 import ThemeToggle from "./ThemeToggle";
+import SearchInput from "./HeaderSearch";
 
 export default function HeaderActions() {
   const [search, setSearch] = useState("");

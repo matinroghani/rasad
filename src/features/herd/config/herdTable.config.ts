@@ -1,4 +1,4 @@
-import type { Cow } from "@/types/herd/herd";
+import { Cow } from "../types";
 
 export const herdTableColumns = [
   { key: "profile", label: "پروفایل دام" },

@@ -1,5 +1,6 @@
-import type { Cow } from "@/types/herd/herd";
-import { herdHealthConfig } from "@/data/constants/herdPage/herdTable.config";
+import { herdHealthConfig } from "../config/herdTable.config";
+import { Cow } from "../types";
+
 
 interface HealthBadgeProps {
   status: Cow["healthStatus"];

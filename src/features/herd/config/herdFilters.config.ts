@@ -1,4 +1,4 @@
-import type { HerdFilter } from "@/types/herd/herd";
+import { HerdFilter } from "../types";
 
 export const herdFilters: {
   label: string;

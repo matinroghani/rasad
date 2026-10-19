@@ -1,8 +1,9 @@
 
 import { useMemo } from "react";
+import { formatHerdCount, formatHerdValue } from "../utils";
+import { Cow } from "../types";
 
-import type { Cow } from "@/types/herd/herd";
-import { formatHerdCount, formatHerdValue } from "../herdTable.utils";
+
 
 
 export function useHerdTable(cows: Cow[]) {
