@@ -1,5 +1,5 @@
-export default function Analytics() {
-  return (
-    <div>page</div>
-  )
+import AnalyticsDashboard from "@/features/analytics/components/AnalyticsDashboard";
+
+export default function AnalyticsPage() {
+  return <AnalyticsDashboard />;
 }

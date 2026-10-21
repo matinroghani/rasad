@@ -1,4 +1,4 @@
-
+import Image from "next/image";
 import { Image as ImageIcon } from "lucide-react";
 import { Cow } from "../types";
 import { herdTableConfig } from "../config/herdTable.config";
@@ -9,15 +9,14 @@ interface CowAvatarProps {
 
 export default function CowAvatar({ cow }: CowAvatarProps) {
   return (
-    <div className="aspect-square w-full max-w-11 shrink-0 overflow-hidden rounded-[var(--radius-md)]">
+    <div className="relative aspect-square w-full max-w-11 shrink-0 overflow-hidden rounded-[var(--radius-md)]">
       {cow.imageUrl ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={cow.imageUrl}
           alt={`تصویر ${cow.name}`}
-          loading="lazy"
-          decoding="async"
-          className="size-full object-cover"
+          fill
+          sizes="44px"
+          className="object-cover"
         />
       ) : (
         <div

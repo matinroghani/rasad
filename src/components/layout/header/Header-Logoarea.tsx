@@ -35,7 +35,7 @@ export default function HeaderLogoarea() {
               "text-[var(--accent-green-glow)] sm:text-2xl",
             ].join(" ")}
           >
-            رصد
+            رسد
           </span>
 
           <span

@@ -1,16 +1,65 @@
+
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
-import { mockHerd } from "@/data/fixtures/herd";
-import { Cow, HerdFilter, HerdOperationStatus, ManualCowInput } from "../types";
-import { calculateHerdStats, filterHerd } from "../selectors";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "@/store/hooks";
+
+import {
+  herdUploadSucceeded,
+  uploadStarted,
+  uploadProgressUpdated,
+  uploadFailed,
+  uploadCancelled,
+  manualCowCreationStarted,
+  manualCowAdded,
+  manualCowCreationFailed,
+} from "../store/herdSlice";
+
+import {
+  selectHerdCows,
+  selectHerdActiveOperation,
+  selectHerdOperationStatus,
+  selectHerdOperationError,
+  selectHerdUploadStatus,
+  selectHerdUploadError,
+  selectHerdUploadProgress,
+  selectManualCowStatus,
+  selectManualCowError,
+} from "../store/herdSelectors";
+
+import type {
+  Cow,
+  HerdFilter,
+  ManualCowInput,
+} from "../types";
+
+import {
+  calculateHerdStats,
+  filterHerd,
+} from "../selectors";
+
 import { validateHerdImages } from "../validation";
-import { createManualCow, uploadHerdImages } from "../api/herd.service";
 
+import {
+  createManualCow,
+  uploadHerdImages,
+} from "../api/herd.service";
 
 function createId(): string {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+  if (
+    typeof crypto !== "undefined" &&
+    "randomUUID" in crypto
+  ) {
     return crypto.randomUUID();
   }
 
@@ -38,22 +87,35 @@ function createEmptyCow(overrides: Partial<Cow> = {}): Cow {
 }
 
 export function useHerd() {
-  const [cows, setCows] = useState<Cow[]>(() => [...mockHerd]);
-  const [filter, setFilter] = useState<HerdFilter>("all");
+  const dispatch = useAppDispatch();
 
-  const [op, setOp] = useState<{
-    status: HerdOperationStatus;
-    error: string | null;
-  }>({
-    status: "idle",
-    error: null,
-  });
+  const cows = useAppSelector(selectHerdCows);
+  const activeOperation = useAppSelector(
+    selectHerdActiveOperation,
+  );
+
+  const status = useAppSelector(selectHerdOperationStatus);
+  const error = useAppSelector(selectHerdOperationError);
+
+  const uploadStatus = useAppSelector(selectHerdUploadStatus);
+  const uploadError = useAppSelector(selectHerdUploadError);
+  const uploadProgress = useAppSelector(
+    selectHerdUploadProgress,
+  );
+
+  const manualStatus = useAppSelector(selectManualCowStatus);
+  const manualError = useAppSelector(selectManualCowError);
+
+  const [filter, setFilter] = useState<HerdFilter>("all");
 
   const isUploadingRef = useRef(false);
   const isCreatingCowRef = useRef(false);
   const abortRef = useRef<AbortController | null>(null);
 
-  const stats = useMemo(() => calculateHerdStats(cows), [cows]);
+  const stats = useMemo(
+    () => calculateHerdStats(cows),
+    [cows],
+  );
 
   const filteredCows = useMemo(
     () => filterHerd(cows, filter),
@@ -63,58 +125,66 @@ export function useHerd() {
   useEffect(() => {
     return () => {
       abortRef.current?.abort();
-
-      for (const cow of cows) {
-        if (cow.imageUrl?.startsWith("blob:")) {
-          URL.revokeObjectURL(cow.imageUrl);
-        }
-      }
     };
-    // این cleanup فقط هنگام unmount اجرا می‌شود.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const uploadImages = useCallback(
-    async (files: File[], onProgress?: (progress: number) => void) => {
-      if (isUploadingRef.current || isCreatingCowRef.current) return;
+    async (
+      files: File[],
+      onProgress?: (progress: number) => void,
+    ) => {
+      if (
+        isUploadingRef.current ||
+        isCreatingCowRef.current ||
+        activeOperation !== null
+      ) {
+        return;
+      }
 
       const validationError = validateHerdImages(files);
 
       if (validationError) {
-        setOp({ status: "error", error: validationError });
+        dispatch(uploadFailed(validationError));
         return;
       }
 
       isUploadingRef.current = true;
-      setOp({ status: "loading", error: null });
 
       const controller = new AbortController();
       abortRef.current = controller;
 
+      dispatch(uploadStarted());
+
       try {
         const result = await uploadHerdImages(files, {
           signal: controller.signal,
-          onProgress,
+          onProgress: (progress) => {
+            dispatch(uploadProgressUpdated(progress));
+            onProgress?.(progress);
+          },
         });
 
-        setCows((current) => [...result.cows, ...current]);
-        setOp({ status: "success", error: null });
+        dispatch(herdUploadSucceeded(result.cows));
       } catch (err) {
-        if ((err as Error)?.name === "AbortError") {
-          setOp({ status: "idle", error: null });
+        if (
+          err instanceof Error &&
+          err.name === "AbortError"
+        ) {
+          dispatch(uploadCancelled());
           return;
         }
 
-        setOp({
-          status: "error",
-          error: "آپلود تصاویر ناموفق بود. دوباره تلاش کنید.",
-        });
+        dispatch(
+          uploadFailed(
+            "آپلود تصاویر ناموفق بود. دوباره تلاش کنید.",
+          ),
+        );
       } finally {
         isUploadingRef.current = false;
         abortRef.current = null;
       }
     },
-    [],
+    [activeOperation, dispatch],
   );
 
   const cancelUpload = useCallback(() => {
@@ -123,23 +193,26 @@ export function useHerd() {
 
   const addManualCow = useCallback(
     async (input: ManualCowInput): Promise<boolean> => {
-      if (isUploadingRef.current || isCreatingCowRef.current) {
+      if (
+        isUploadingRef.current ||
+        isCreatingCowRef.current ||
+        activeOperation !== null
+      ) {
         return false;
       }
 
       const earTag = input.earTag.trim();
 
       if (!earTag) {
-        setOp({
-          status: "error",
-          error: "شماره گوش الزامی است.",
-        });
+        dispatch(
+          manualCowCreationFailed("شماره گوش الزامی است."),
+        );
 
         return false;
       }
 
       isCreatingCowRef.current = true;
-      setOp({ status: "loading", error: null });
+      dispatch(manualCowCreationStarted());
 
       try {
         const result = await createManualCow({
@@ -159,34 +232,25 @@ export function useHerd() {
           createdAt: new Date().toISOString(),
         });
 
-        setCows((current) => {
-          // جلوگیری از اضافه‌شدن تکراری یک پاسخ به state
-          if (current.some((item) => item.id === cow.id)) {
-            return current;
-          }
-
-          return [cow, ...current];
-        });
-
+        dispatch(manualCowAdded(cow));
         setFilter("all");
-        setOp({ status: "success", error: null });
 
         return true;
       } catch (err) {
-        setOp({
-          status: "error",
-          error:
+        dispatch(
+          manualCowCreationFailed(
             err instanceof Error
               ? err.message
               : "ثبت دام ناموفق بود. دوباره تلاش کنید.",
-        });
+          ),
+        );
 
         return false;
       } finally {
         isCreatingCowRef.current = false;
       }
     },
-    [],
+    [activeOperation, dispatch],
   );
 
   return {
@@ -195,8 +259,21 @@ export function useHerd() {
     stats,
     filter,
     setFilter,
-    status: op.status,
-    error: op.error,
+
+    // سازگاری با کامپوننت‌هایی که قبلاً از این دو مقدار استفاده می‌کردند.
+    status,
+    error,
+
+    // دسترسی مستقل به وضعیت هر عملیات
+    uploadStatus,
+    uploadError,
+    uploadProgress,
+    manualStatus,
+    manualError,
+
+    isUploading: activeOperation === "upload",
+    isCreatingCow: activeOperation === "manual",
+
     uploadImages,
     cancelUpload,
     addManualCow,

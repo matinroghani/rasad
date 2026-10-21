@@ -1,4 +1,3 @@
-
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { yekan } from "@/lib/font/font";
@@ -6,6 +5,8 @@ import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import ToastProvider from "@/components/providers/ToastProvider";
+import StoreProvider from "@/store/providers/StoreProvider";
+import { Suspense } from "react";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -38,9 +39,7 @@ type RootLayoutProps = Readonly<{
   children: React.ReactNode;
 }>;
 
-export default function RootLayout({
-  children,
-}: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="fa"
@@ -55,10 +54,14 @@ export default function RootLayout({
       )}
     >
       <body className="flex min-h-full flex-col">
-        <ThemeProvider>
-          <ToastProvider />
-          {children}
-        </ThemeProvider>
+        <Suspense fallback={<div className="min-h-dvh" />}>
+          <StoreProvider>
+            <ThemeProvider>
+              <ToastProvider />
+              {children}
+            </ThemeProvider>
+          </StoreProvider>
+        </Suspense>
       </body>
     </html>
   );
