@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { toast } from "react-toastify";
 import { ClipboardList, Leaf } from "lucide-react";
@@ -13,7 +13,6 @@ import HerdStats from "@/features/herd/components/HerdStats";
 import HerdUpload from "@/features/herd/components/HerdUpload";
 import HerdTable from "@/features/herd/components/HerdTable";
 
-
 const sectionMotion = {
   hidden: { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0 },
@@ -24,6 +23,7 @@ const sectionTransition = {
   duration: 0.42,
   ease: [0.22, 1, 0.36, 1] as const,
 };
+
 
 export default function HerdPage() {
   const {
@@ -54,12 +54,16 @@ export default function HerdPage() {
         )
       : 0;
 
-  const initialAnimation = shouldReduceMotion
-    ? false
-    : sectionMotion.hidden;
+  const initialAnimation = shouldReduceMotion ? false : sectionMotion.hidden;
+
+  const previousStatus = useRef(status);
 
   useEffect(() => {
-    if (status === "loading") return;
+    const previous = previousStatus.current;
+
+    previousStatus.current = status;
+
+    if (previous === status) return;
 
     if (status === "error" && error) {
       toast.error(`عملیات انجام نشد: ${error}`, {
@@ -171,8 +175,8 @@ export default function HerdPage() {
                   </h1>
 
                   <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--text-muted)]">
-                    مدیریت اطلاعات دام‌ها، بررسی وضعیت سلامت و پایش تولید
-                    روزانه در یک نمای یکپارچه.
+                    مدیریت اطلاعات دام‌ها، بررسی وضعیت سلامت و پایش تولید روزانه
+                    در یک نمای یکپارچه.
                   </p>
                 </div>
 
@@ -270,9 +274,7 @@ export default function HerdPage() {
             <motion.div
               key={filteredCows.length}
               initial={
-                shouldReduceMotion
-                  ? false
-                  : { opacity: 0.6, scale: 0.97 }
+                shouldReduceMotion ? false : { opacity: 0.6, scale: 0.97 }
               }
               animate={{ opacity: 1, scale: 1 }}
               transition={{
@@ -310,8 +312,8 @@ export default function HerdPage() {
           <HerdTable cows={filteredCows} />
 
           <p className="px-1 text-[var(--font-size-xs)] leading-6 text-[var(--text-light)]">
-            اطلاعات نمایش‌داده‌شده بر اساس داده‌های در دسترس فعلی است.
-            تحلیل و تشخیص سلامت دام به نتیجه‌ی معتبر سرویس مربوطه نیاز دارد.
+            اطلاعات نمایش‌داده‌شده بر اساس داده‌های در دسترس فعلی است. تحلیل و
+            تشخیص سلامت دام به نتیجه‌ی معتبر سرویس مربوطه نیاز دارد.
           </p>
         </motion.section>
       </motion.main>

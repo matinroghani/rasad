@@ -53,12 +53,12 @@ export default function SidebarContent({
         className={[
           "h-full min-h-0 min-w-0",
           "overflow-x-hidden overflow-y-auto overscroll-contain",
-          "touch-pan-y p-3 pb-16 sm:p-3.5 sm:pb-16",
+          "touch-pan-y p-2.5 pb-16 sm:p-3 sm:pb-16",
           "!scrollbar-hidden [&::-webkit-scrollbar]:hidden",
           "fade-y",
         ].join(" ")}
       >
-        <ul className="flex flex-col gap-2.5">
+        <ul className="flex flex-col gap-2">
           {sidebarItems.map((item, index) => {
             const Icon = item.Icon;
 
@@ -123,13 +123,13 @@ export default function SidebarContent({
                   }}
                   className={[
                     "group relative isolate flex w-full min-w-0",
-                    "flex-col items-center gap-2.5 overflow-hidden",
-                    "rounded-lg border-[1.5px] px-3.5 py-4",
+                    "flex-col items-center gap-2 overflow-hidden",
+                    "rounded-xl border px-3 py-3.5",
                     "text-center shadow-[var(--shadow-sm)]",
                     "transition-[border-color,box-shadow] duration-300",
                     "focus-visible:outline-none",
                     "focus-visible:shadow-[var(--focus-ring)]",
-                    "hover:-translate-y-1 hover:shadow-[var(--shadow-md)]",
+                    "hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]",
                   ].join(" ")}
                 >
                   <motion.span
@@ -160,7 +160,7 @@ export default function SidebarContent({
                   <motion.span
                     variants={iconVariants}
                     transition={transition}
-                    className="relative flex size-11.5 shrink-0 items-center justify-center rounded-[13px] border text-xl text-white"
+                    className="relative flex size-11 shrink-0 items-center justify-center rounded-xl border text-lg text-white"
                     style={{
                       background: isActive
                         ? "rgb(255 255 255 / 22%)"
@@ -170,15 +170,15 @@ export default function SidebarContent({
                         : "transparent",
                       boxShadow: isActive
                         ? "0 0 0 4px rgb(255 255 255 / 20%), var(--shadow-sm)"
-                        : "0 4px 12px rgb(0 0 0 / 10%), 0 0 0 4px var(--item-soft)",
+                        : "0 4px 12px rgb(0 0 0 / 10%), 0 0 0 3px var(--item-soft)",
                     }}
                   >
                     <Icon aria-hidden="true" weight="duotone" />
                   </motion.span>
 
-                  <span className="relative z-10 flex w-full min-w-0 flex-col items-center gap-0.5">
+                  <span className="relative z-10 flex w-full min-w-0 flex-col items-center gap-1">
                     <span
-                      className="block max-w-full wrap-break-word text-[13.5px] font-semibold leading-6 transition-colors duration-300"
+                      className="block max-w-full wrap-break-word text-sm font-bold leading-5 transition-colors duration-300"
                       style={{
                         color: isActive
                           ? "var(--text-inverse)"
@@ -189,7 +189,7 @@ export default function SidebarContent({
                     </span>
 
                     <span
-                      className="block max-w-full wrap-break-word text-[var(--font-size-xs)] leading-5 transition-colors duration-300"
+                      className="block max-w-full wrap-break-word text-xs leading-4 transition-colors duration-300"
                       style={{
                         color: isActive
                           ? "rgb(255 255 255 / 88%)"

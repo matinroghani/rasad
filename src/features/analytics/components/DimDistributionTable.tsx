@@ -14,7 +14,7 @@ export default function DimDistributionTable({
   return (
     <AnalyticsPanel
       title="گزارش توزیع بر اساس DIM"
-      description="درصدها بر اساس دام‌هایی محاسبه می‌شوند که مقدار DIM معتبر دارند."
+      description="درسدها بر اساس دام‌هایی محاسبه می‌شوند که مقدار DIM معتبر دارند."
     >
       <div className="overflow-x-auto">
         <table className="w-full min-w-[540px] text-right text-xs">
@@ -22,7 +22,7 @@ export default function DimDistributionTable({
             <tr className="border-b border-[var(--panel-border)] text-[var(--text-muted)]">
               <th className="px-3 py-3 font-semibold">بازه DIM</th>
               <th className="px-3 py-3 font-semibold">تعداد دام</th>
-              <th className="px-3 py-3 font-semibold">درصد</th>
+              <th className="px-3 py-3 font-semibold">درسد</th>
               <th className="px-3 py-3 font-semibold">میانگین شیر</th>
             </tr>
           </thead>

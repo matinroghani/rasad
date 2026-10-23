@@ -1,6 +1,6 @@
+import MetricCard from "@/components/ui/MetricCard";
 import { herdGaugeConfig, herdMetricsConfig } from "../config/herdStats.config";
-import { HerdOverviewStats } from "../types";
-
+import type { HerdOverviewStats } from "../types";
 
 interface HerdStatsProps {
   stats: HerdOverviewStats;
@@ -68,6 +68,7 @@ export default function HerdStats({ stats }: HerdStatsProps) {
       aria-label="آمار گله"
       className="space-y-[var(--section-gap)]"
     >
+      {/* کارت‌های سلامت گله */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {gauges.map((item) => {
           const Icon = item.icon;
@@ -117,51 +118,17 @@ export default function HerdStats({ stats }: HerdStatsProps) {
       </div>
 
       <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
-        {metrics.map((item) => {
-          const Icon = item.icon;
-
-          return (
-            <article
-              key={item.label}
-              className={[
-                "relative min-w-0 overflow-hidden",
-                "rounded-[var(--radius-lg)] border border-[var(--panel-border)]",
-                "bg-[var(--panel-bg)] p-4 shadow-[var(--shadow-sm)]",
-                "transition-[border-color,box-shadow] duration-200",
-                "hover:border-[var(--panel-border-hover)] hover:shadow-[var(--shadow-md)]",
-                "sm:p-5",
-              ].join(" ")}
-            >
-              <div className="flex items-start justify-between gap-2">
-                <div
-                  className={`flex aspect-square w-full max-w-10 shrink-0 items-center justify-center rounded-[var(--radius-md)] ${item.tone}`}
-                >
-                  <Icon className="size-[55%]" strokeWidth={1.8} />
-                </div>
-
-                <span className="mt-1 size-1.5 shrink-0 rounded-full bg-[var(--accent-green-light)]" />
-              </div>
-
-              <p className="mt-5 text-xs leading-[var(--line-height-normal)] text-[var(--text-muted)] sm:text-[var(--font-size-md)]">
-                {item.label}
-              </p>
-
-              <div className="mt-2 flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
-                <span className="text-xl font-extrabold tracking-tight text-[var(--text-main)] sm:text-2xl">
-                  {item.value}
-                </span>
-
-                <span className="text-[var(--font-size-xs)] font-medium text-[var(--text-light)]">
-                  {item.unit}
-                </span>
-              </div>
-
-              <div
-                className={`absolute inset-x-0 bottom-0 h-0.75 ${item.accent}`}
-              />
-            </article>
-          );
-        })}
+        {metrics.map((item) => (
+          <MetricCard
+            key={item.label}
+            title={item.label}
+            value={String(item.value)}
+            description=""
+            icon={item.icon}
+            unit={item.unit}
+            variant="accent"
+          />
+        ))}
       </div>
     </section>
   );

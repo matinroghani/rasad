@@ -8,16 +8,14 @@ import {
 } from "lucide-react";
 import { HerdOverviewStats } from "../types";
 
-export const herdGaugeConfig = (
-  stats: HerdOverviewStats,
-) => {
+export const herdGaugeConfig = (stats: HerdOverviewStats) => {
   const hasCows = stats.totalCows > 0;
 
   return [
     {
       label: "سلامت گله",
       value: hasCows ? stats.healthRate : 0,
-      detail: "درصد دام‌های سالم",
+      detail: "درسد دام‌های سالم",
       color: "var(--gauge-health)",
       icon: HeartPulse,
       tone: "bg-[var(--tone-health-bg)] text-[var(--tone-health-fg)]",

@@ -1,6 +1,5 @@
+import DiseaseDashboard from "@/features/disease/components/DiseaseDashboard";
 
-export default function Disease() {
-  return (
-    <div>page</div>
-  )
+export default function DiseasePage() {
+  return <DiseaseDashboard />;
 }

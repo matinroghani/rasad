@@ -1,10 +1,10 @@
 import { analyticsMockCows } from "@/data/constants/analyticsPage/analytics.mock";
-import type { Cow } from "@/features/herd/types";
+import { parseAnalyticsApiResponse } from "../schemas/analytics.schema";
 
 const MOCK_API_DELAY_MS = 600;
 
 export interface AnalyticsApiResponse {
-  data: Cow[];
+  data: import("@/features/herd/types").Cow[];
   total: number;
 }
 
@@ -41,10 +41,10 @@ export async function getAnalyticsCows(
     throw new DOMException("درخواست لغو شد.", "AbortError");
   }
 
-  const data = analyticsMockCows.map((cow) => ({ ...cow }));
-
-  return {
-    data,
-    total: data.length,
+  const payload: unknown = {
+    data: analyticsMockCows.map((cow) => ({ ...cow })),
+    total: analyticsMockCows.length,
   };
+
+  return parseAnalyticsApiResponse(payload);
 }

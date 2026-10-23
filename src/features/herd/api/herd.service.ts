@@ -1,4 +1,9 @@
-import { Cow, HerdUploadResult, ManualCowInput } from "../types";
+import type {
+  Cow,
+  HerdUploadResult,
+  ManualCowInput,
+} from "../types";
+import { parseCreateManualCowResponse } from "../schemas/herd.schema";
 
 const DEFAULT_UPLOAD_DELAY_MS = 1000;
 
@@ -9,11 +14,19 @@ export interface UploadHerdImagesOptions {
   namePrefix?: string;
 }
 
+interface CreateManualCowResponse {
+  id: string | number;
+  tag: string;
+}
+
 function createId(): string {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
     return crypto.randomUUID();
   }
-  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 11)}`;
+
+  return `${Date.now().toString(36)}-${Math.random()
+    .toString(36)
+    .slice(2, 11)}`;
 }
 
 function delay(ms: number, signal?: AbortSignal): Promise<void> {
@@ -49,7 +62,10 @@ export async function uploadHerdImages(
   } = options;
 
   if (files.length === 0) {
-    return { cows: [], processedImages: 0 };
+    return {
+      cows: [],
+      processedImages: 0,
+    };
   }
 
   const createdUrls: string[] = [];
@@ -70,6 +86,7 @@ export async function uploadHerdImages(
 
       const file = files[i];
       const imageUrl = URL.createObjectURL(file);
+
       createdUrls.push(imageUrl);
 
       cows.push({
@@ -94,22 +111,20 @@ export async function uploadHerdImages(
       cows,
       processedImages: files.length,
     };
-  } catch (err) {
+  } catch (error) {
     for (const url of createdUrls) {
       URL.revokeObjectURL(url);
     }
 
-    throw err;
+    throw error;
   }
 }
 
-interface CreateManualCowResponse {
-  id: string | number;
-  tag: string;
-}
-
 function getApiBaseUrl(): string {
-  const baseUrl = process.env.NEXT_PUBLIC_RASAD_API_URL?.replace(/\/+$/, "");
+  const baseUrl = process.env.NEXT_PUBLIC_RASAD_API_URL?.replace(
+    /\/+$/,
+    "",
+  );
 
   if (!baseUrl) {
     throw new Error(
@@ -155,23 +170,21 @@ export async function createManualCow(
     }
 
     if (response.status >= 500) {
-      throw new Error("خطایی در سرور رخ داده است. کمی بعد دوباره تلاش کنید.");
+      throw new Error(
+        "خطایی در سرور رخ داده است. کمی بعد دوباره تلاش کنید.",
+      );
     }
 
     throw new Error(`ثبت دام ناموفق بود. کد خطا: ${response.status}`);
   }
 
-  let result: CreateManualCowResponse;
+  let payload: unknown;
 
   try {
-    result = (await response.json()) as CreateManualCowResponse;
+    payload = await response.json();
   } catch {
     throw new Error("پاسخ دریافتی از سرور معتبر نیست.");
   }
 
-  if (result.id == null || !result.tag) {
-    throw new Error("شناسه یا شماره گوش در پاسخ سرور وجود ندارد.");
-  }
-
-  return result;
+  return parseCreateManualCowResponse(payload);
 }

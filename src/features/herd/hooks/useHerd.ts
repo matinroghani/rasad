@@ -48,12 +48,12 @@ import {
   filterHerd,
 } from "../selectors";
 
-import { validateHerdImages } from "../validation";
 
 import {
   createManualCow,
   uploadHerdImages,
 } from "../api/herd.service";
+import { validateHerdImages } from "../utils";
 
 function createId(): string {
   if (
